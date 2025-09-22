@@ -11,7 +11,7 @@ A beautiful, responsive art gallery showcasing baroque and classical artworks. B
 
 ## Live Demo
 
-Visit the live gallery at: [https://dragospetrescu.github.io/art_gallery/](https://dragospetrescu.github.io/art_gallery/)
+Visit the live gallery at: [https://dragoseven.github.io/art_gallery/](https://dragoseven.github.io/art_gallery/)
 
 ## Local Development
 
