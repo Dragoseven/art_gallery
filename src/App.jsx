@@ -136,11 +136,13 @@ function App() {
 							>
 								&times;
 							</button>
-							<img
-								className="baroque-slide-img"
-								src={artPieces[selected].img}
-								alt={artPieces[selected].name}
-							/>
+							<div className="baroque-slide-img-container">
+								<img
+									className="baroque-slide-img"
+									src={artPieces[selected].img}
+									alt={artPieces[selected].name}
+								/>
+							</div>
 							<div className="baroque-slide-title">
 								{artPieces[selected].name}
 							</div>
