@@ -60,6 +60,7 @@ const artPieces = [
 
 function App() {
 	const [showTopArrow, setShowTopArrow] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
 
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -81,8 +82,28 @@ function App() {
 			<div className="baroque-bg">
 				<nav className="baroque-nav">
 					<div className="baroque-nav-brand">
-						<div className="baroque-nav-title">Simple Art Showcase by Dragos Petrescu</div>
+						<div className="baroque-nav-title">Unfunny Art Gallery</div>
 					</div>
+					<button
+						className="baroque-menu-btn"
+						title="Menu"
+						style={{position: 'absolute', top: 16, right: 24, background: 'none', border: 'none', cursor: 'pointer', padding: 0}}
+						onClick={() => setMenuOpen((open) => !open)}
+					>
+						<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect y="7" width="32" height="3" rx="1.5" fill="#e6e0d1" />
+							<rect y="14" width="32" height="3" rx="1.5" fill="#e6e0d1" />
+							<rect y="21" width="32" height="3" rx="1.5" fill="#e6e0d1" />
+						</svg>
+					</button>
+					{menuOpen && (
+						<div className="baroque-menu-dropdown">
+							<button className="baroque-menu-item" onClick={() => {setMenuOpen(false); window.location.href = '/';}}>Home</button>
+							<button className="baroque-menu-item" onClick={() => {setMenuOpen(false); alert('About: This is a simple art gallery web app.');}}>About</button>
+							<button className="baroque-menu-item" onClick={() => {setMenuOpen(false); alert('Contact: Email dragos@example.com');}}>Contact</button>
+							<button className="baroque-menu-item" onClick={() => {setMenuOpen(false); alert('Legal: All rights reserved.');}}>Legal</button>
+						</div>
+					)}
 				</nav>
 				<section
 					className="baroque-gallery"
