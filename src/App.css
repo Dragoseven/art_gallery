@@ -365,3 +365,31 @@ html, body {
   color: #fff2d9;
   font-weight: 700;
 }
+
+@media (max-width: 600px) {
+  .baroque-slide-panel {
+    padding-top: 24px;
+    padding-bottom: 16px;
+    min-width: 0;
+    width: 100vw;
+    left: 0;
+    right: 0;
+    max-width: 100vw;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .baroque-slide-img {
+    height: 220px;
+    max-width: 90vw;
+    margin-bottom: 24px;
+  }
+  .baroque-slide-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  .baroque-slide-desc {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    max-width: 90vw;
+  }
+}
