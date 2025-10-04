@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 const artPieces = [
@@ -84,18 +86,23 @@ function App() {
 					<div className="baroque-nav-brand">
 						<div className="baroque-nav-title">Unfunny Art Gallery</div>
 					</div>
-					<button
-						className="baroque-menu-btn"
-						title="Menu"
-						style={{position: 'absolute', top: 16, right: 24, background: 'none', border: 'none', cursor: 'pointer', padding: 0}}
-						onClick={() => setMenuOpen((open) => !open)}
-					>
-						<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<rect y="7" width="32" height="3" rx="1.5" fill="#e6e0d1" />
-							<rect y="14" width="32" height="3" rx="1.5" fill="#e6e0d1" />
-							<rect y="21" width="32" height="3" rx="1.5" fill="#e6e0d1" />
-						</svg>
-					</button>
+					<div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center', marginRight: '32px' }}>
+						<button
+							className="baroque-menu-btn"
+							title="Menu"
+							style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+							onClick={() => setMenuOpen((open) => !open)}
+						>
+							<FontAwesomeIcon icon={faBook} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
+						</button>
+						<button
+							className="baroque-menu-btn"
+							title="Cart"
+							style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+						>
+							<FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
+						</button>
+					</div>
 					{menuOpen && (
 						<div className="baroque-menu-dropdown">
 							<button className="baroque-menu-item" onClick={() => {setMenuOpen(false); window.location.href = '/';}}>Home</button>

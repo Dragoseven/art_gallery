@@ -30,23 +30,17 @@
 
 
 .baroque-menu-btn {
-  position: absolute;
-  top: 16px;
-  right: 24px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
   z-index: 201;
-  transition: background 0.25s cubic-bezier(.77,.2,.05,1), border 0.25s cubic-bezier(.77,.2,.05,1);
-    border-radius: 4px;
+  transition: opacity 0.25s cubic-bezier(.77,.2,.05,1);
+  display: flex;
+  align-items: center;
 }
 .baroque-menu-btn:hover {
-    background: #e6e0d1;
-    border: 1px solid #7c6a4a;
-  }
-  .baroque-menu-btn:hover svg rect {
-    fill: #7c6a4a;
+  opacity: 0.8;
 }
 
 
@@ -164,7 +158,7 @@ html, body {
   top: 0; right: 0;
   width: 80vw; max-width: 900px;
   height: 100vh;
-  background: #b8b7b3;
+  background: #c1ba9d;
   z-index: 101;
   box-shadow: -4px 0 24px rgba(0,0,0,0.12);
   display: flex;
