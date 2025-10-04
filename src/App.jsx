@@ -5,10 +5,10 @@ import './App.css';
 
 const artPieces = [
 	{
-		img: 'https://api.nga.gov/iiif/2fac6801-cfcd-463c-b6e3-5ebf5d124cbe/full/950,/0/default.jpg',
-		name: 'Baroque Couple',
+		img: '/art_gallery/dicaprio.JPG',
+		name: 'DiCaprio',
 		artist: 'Unknown',
-		desc: 'A dramatic depiction of two figures, their gestures and expressions capturing the emotional intensity of the Baroque era.',
+		desc: 'A captivating portrait featuring Leonardo DiCaprio.',
 	},
 	{
 		img: 'https://api.nga.gov/iiif/3b398f2e-ba99-4455-b55f-824e39f849f5/full/950,/0/default.jpg',

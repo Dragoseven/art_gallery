@@ -158,7 +158,7 @@ html, body {
   top: 0; right: 0;
   width: 80vw; max-width: 900px;
   height: 100vh;
-  background: #c1ba9d;
+  background: #d3caa4;
   z-index: 101;
   box-shadow: -4px 0 24px rgba(0,0,0,0.12);
   display: flex;
