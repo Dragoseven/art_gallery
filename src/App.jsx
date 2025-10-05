@@ -5,7 +5,7 @@ import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, Footer
 import './App.css';
 
 const artPieces = [
-	{ img: '/art_gallery/American Clown.jpg', name: 'American Clown', artist: 'Unknown', desc: 'A colorful and whimsical portrait of an American clown.' },
+	{ img: './public/American Clown.jpg', name: 'American Clown', artist: 'Unknown', desc: 'A colorful and whimsical portrait of an American clown.' },
 	{ img: './public/Anya Taylor-Joy - The Queen\'s Gambit2.jpg', name: "Anya Taylor-Joy - The Queen's Gambit (Alt)", artist: 'Unknown', desc: "Another captivating portrait from The Queen's Gambit series." },
 	{ img: './public/Baby Yoda Bill.jpg', name: 'Baby Yoda Bill', artist: 'Unknown', desc: 'An adorable portrait of Baby Yoda.' },
 	{ img: './public/Blonde Girl with Goggles2.jpg', name: 'Blonde Girl with Goggles (Alt)', artist: 'Unknown', desc: 'Another perspective of the blonde girl with goggles.' },
