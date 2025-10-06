@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind directives removed for plain CSS compatibility */
 
 .baroque-top-arrow svg {
   background: none;
@@ -130,12 +128,17 @@ html, body {
   position: fixed;
   right: 32px;
   bottom: 32px;
-  background: none;
-  border: none;
+  background: none !important;
+  border: none !important;
   cursor: pointer;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
   transition: transform 0.2s;
-  padding: 0;
+  padding: 0 !important;
+  outline: none !important;
+  margin: 0 !important;
+  display: block;
+  width: 48px;
+  height: 48px;
 }
 
 .baroque-bg {
@@ -166,13 +169,23 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 32px 32px 32px;
+  justify-content: flex-start;
+  padding: 80px 32px 32px 32px;
   animation: slideIn 0.35s cubic-bezier(.77,.2,.05,1);
+  overflow-y: auto;
 }
 
 @keyframes slideIn {
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
+}
+
+.baroque-slide-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
 .baroque-slide-img {
@@ -181,7 +194,6 @@ html, body {
   height: 400px;
   object-fit: contain;
   border-radius: 12px;
-  margin-bottom: 50px;
 }
 
 .baroque-slide-title {
@@ -192,18 +204,42 @@ html, body {
   text-align: center;
 }
 
+.baroque-slide-artist {
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.baroque-slide-medium {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.baroque-slide-dimensions {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .baroque-slide-desc {
   font-size: 1.3rem;
-  color: #e8e5de;
+  color: #ffffff;
   text-align: center;
   max-width: 600px;
   margin-bottom: 24px;
 }
 
+
+
 .baroque-close-btn {
-  position: relative;
-  top: 5px;
-  right: 32px;
+  position: absolute;
+  top: 20px;
+  right: 24px;
   font-size: 3rem;
   color: #ffffff;
   background: none;
@@ -405,15 +441,20 @@ html, body {
   padding: 0 !important;
 }
 
-.baroque-footer-link {
+.baroque-footer-link,
+.baroque-footer-link a,
+.baroque-footer-links a {
   font-size: 1.3rem !important;
-  color: #fff2d9 !important;
+  color: #eae8e5 !important;
   font-family: 'Niconne', cursive !important;
   transition: color 0.3s ease;
+  text-decoration: none !important;
 }
 
-.baroque-footer-link:hover {
-  color: #ffd700 !important;
+.baroque-footer-link:hover,
+.baroque-footer-link a:hover,
+.baroque-footer-links a:hover {
+  color: #7c6a4a !important;
 }
 
 .baroque-footer-divider {
@@ -428,11 +469,16 @@ html, body {
   margin-bottom: 0.75rem;
 }
 
-.baroque-footer-copyright-text {
+.baroque-footer-copyright-text,
+.baroque-footer-copyright-text *,
+.baroque-footer-copyright-text a,
+.baroque-footer-bottom a,
+.baroque-footer-bottom span {
   font-size: 1.3rem !important;
-  color: #fff2d9 !important;
+  color: #ffffff !important;
   font-family: 'Niconne', cursive !important;
   text-align: center !important;
+  text-decoration: none !important;
 }
 
 .baroque-footer-date {
@@ -462,29 +508,53 @@ html, body {
 
 @media (max-width: 600px) {
   .baroque-slide-panel {
-    padding-top: 24px;
-    padding-bottom: 16px;
+    padding: 60px 16px 32px 16px;
     min-width: 0;
     width: 100vw;
     left: 0;
     right: 0;
     max-width: 100vw;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100dvh;
+  }
+  .baroque-slide-img-container {
+    margin-bottom: 24px;
   }
   .baroque-slide-img {
     height: 220px;
-    max-width: 90vw;
-    margin-bottom: 24px;
+    max-width: 85vw;
+    width: 85vw;
   }
   .baroque-slide-title {
     font-size: 1.4rem;
     margin-bottom: 10px;
+    width: 90vw;
+    text-align: center;
+  }
+  .baroque-slide-artist {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    width: 90vw;
+    text-align: center;
+  }
+  .baroque-slide-medium {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    width: 90vw;
+    text-align: center;
+  }
+  .baroque-slide-dimensions {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    width: 90vw;
+    text-align: center;
   }
   .baroque-slide-desc {
     font-size: 1.1rem;
     margin-bottom: 16px;
     max-width: 90vw;
+    width: 90vw;
+    text-align: center;
   }
 }
