@@ -128,7 +128,10 @@ return (
 <div className="baroque-bg">
 <nav className="baroque-nav">
 <div className="baroque-nav-brand">
-<div className="baroque-nav-title">Art Laundromat</div>
+	<div className="baroque-nav-title">Art Laundromat</div>
+	<div style={{ fontSize: '1.1rem', color: '#fffbe9', fontWeight: 400, marginTop: 2 }}>
+		{artPieces.length} art pieces in the collection
+	</div>
 </div>
 <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center', marginRight: '32px' }}>
 <button
