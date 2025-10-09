@@ -558,3 +558,449 @@ html, body {
     text-align: center;
   }
 }
+
+/* Card Image Navigation */
+.baroque-img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.baroque-card-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.baroque-card:hover .baroque-card-nav {
+  opacity: 1;
+}
+
+.baroque-card-nav:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.baroque-card-nav-prev {
+  left: 10px;
+}
+
+.baroque-card-nav-next {
+  right: 10px;
+}
+
+/* Card Image Indicators */
+.baroque-card-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.baroque-card-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.baroque-card-indicator.active {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.baroque-card-indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Modal Image Navigation */
+.baroque-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.baroque-modal-nav:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.baroque-modal-nav-prev {
+  left: 20px;
+}
+
+.baroque-modal-nav-next {
+  right: 20px;
+}
+
+/* Modal Image Indicators */
+.baroque-modal-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 20;
+}
+
+.baroque-modal-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.baroque-modal-indicator.active {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.baroque-modal-indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Page Styles */
+.baroque-page-content {
+  padding: 40px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+.baroque-page-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.baroque-page-title {
+  font-size: 3.5rem;
+  color: #4a3728;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.baroque-page-subtitle {
+  font-size: 1.5rem;
+  color: #7c6a4a;
+  font-style: italic;
+}
+
+/* About Page Styles */
+.baroque-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.baroque-about-section {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.baroque-about-icon {
+  font-size: 3rem;
+  color: #4a3728;
+  margin-bottom: 20px;
+}
+
+.baroque-about-section h2 {
+  font-size: 2rem;
+  color: #4a3728;
+  margin-bottom: 15px;
+}
+
+.baroque-about-section p {
+  font-size: 1.2rem;
+  color: #5d4e37;
+  line-height: 1.6;
+}
+
+.baroque-about-full-section {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.baroque-about-full-section h2 {
+  font-size: 2.5rem;
+  color: #4a3728;
+  margin-bottom: 20px;
+}
+
+.baroque-about-full-section p {
+  font-size: 1.3rem;
+  color: #5d4e37;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Contact Page Styles */
+.baroque-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.baroque-contact-info {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.baroque-contact-info h2 {
+  font-size: 2.2rem;
+  color: #4a3728;
+  margin-bottom: 20px;
+}
+
+.baroque-contact-info p {
+  font-size: 1.2rem;
+  color: #5d4e37;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.baroque-contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.baroque-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.baroque-contact-icon {
+  font-size: 2rem;
+  color: #4a3728;
+  min-width: 40px;
+}
+
+.baroque-contact-item h3 {
+  font-size: 1.4rem;
+  color: #4a3728;
+  margin-bottom: 5px;
+}
+
+.baroque-contact-item p {
+  font-size: 1.1rem;
+  color: #5d4e37;
+  margin: 0;
+}
+
+.baroque-contact-form-container {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.baroque-contact-form-container h2 {
+  font-size: 2.2rem;
+  color: #4a3728;
+  margin-bottom: 30px;
+}
+
+.baroque-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.baroque-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.baroque-form-group label {
+  font-size: 1.1rem;
+  color: #4a3728;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.baroque-form-input {
+  padding: 12px 15px;
+  font-size: 1.1rem;
+  border: 2px solid #d4c4a8;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #4a3728;
+  font-family: 'Niconne', cursive;
+  transition: border-color 0.3s ease;
+}
+
+.baroque-form-input:focus {
+  outline: none;
+  border-color: #4a3728;
+  background: rgba(255, 255, 255, 1);
+}
+
+.baroque-form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.baroque-submit-btn {
+  background: #4a3728;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Niconne', cursive;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.baroque-submit-btn:hover {
+  background: #3a2a1f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Legal Page Styles */
+.baroque-legal-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.baroque-legal-section {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.baroque-legal-icon {
+  font-size: 2.5rem;
+  color: #4a3728;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.baroque-legal-section h2 {
+  font-size: 2.2rem;
+  color: #4a3728;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.baroque-legal-content {
+  text-align: left;
+}
+
+.baroque-legal-content h3 {
+  font-size: 1.4rem;
+  color: #4a3728;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.baroque-legal-content p {
+  font-size: 1.1rem;
+  color: #5d4e37;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.baroque-legal-footer {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 40px;
+}
+
+.baroque-legal-footer p {
+  font-size: 1.1rem;
+  color: #5d4e37;
+  margin-bottom: 10px;
+}
+
+.baroque-legal-footer a {
+  color: #4a3728;
+  text-decoration: underline;
+}
+
+.baroque-legal-footer a:hover {
+  color: #3a2a1f;
+}
+
+/* Responsive Design for Pages */
+@media (max-width: 768px) {
+  .baroque-page-content {
+    padding: 20px 16px;
+  }
+  
+  .baroque-page-title {
+    font-size: 2.5rem;
+  }
+  
+  .baroque-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .baroque-contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .baroque-about-section,
+  .baroque-contact-info,
+  .baroque-contact-form-container,
+  .baroque-legal-section {
+    padding: 25px;
+  }
+  
+  .baroque-submit-btn {
+    align-self: stretch;
+  }
+}
