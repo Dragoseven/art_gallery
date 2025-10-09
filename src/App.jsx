@@ -1,4 +1,6 @@
 ﻿import React, { useState } from 'react';
+import LikeIcon from './svg_icons/heart.svg?react';
+import DislikeIcon from './svg_icons/brokenHeart.svg?react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faCartShopping, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
@@ -46,6 +48,7 @@ const artPieces = [
 	{ imgs: ['Zendaya - Dune.jpg','4.JPG'], name: 'Zendaya - Dune', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: 'A stunning portrait of Zendaya from Dune.' },
 ];
 
+
 function App() {
 	const [showTopArrow, setShowTopArrow] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -56,6 +59,20 @@ function App() {
 	const [cardImageIndexes, setCardImageIndexes] = useState(
 		artPieces.map(() => 0)
 	);
+	// For lazy loading art pieces
+	const INITIAL_COUNT = 9;
+	const LOAD_MORE_COUNT = 6;
+	const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+	// Like/Dislike state for each art piece
+	const [likes, setLikes] = useState(Array(artPieces.length).fill(0));
+	const [dislikes, setDislikes] = useState(Array(artPieces.length).fill(0));
+
+	const handleLike = (idx) => {
+		setLikes(prev => prev.map((val, i) => i === idx ? val + 1 : val));
+	};
+	const handleDislike = (idx) => {
+		setDislikes(prev => prev.map((val, i) => i === idx ? val + 1 : val));
+	};
 
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -130,7 +147,7 @@ return (
 <div className="baroque-nav-brand">
 	<div className="baroque-nav-title">Art Laundromat</div>
 	<div style={{ fontSize: '1.1rem', color: '#fffbe9', fontWeight: 400, marginTop: 2 }}>
-		{artPieces.length} art pieces in the collection
+		Collection - {artPieces.length} Pieces
 	</div>
 </div>
 <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center', marginRight: '32px' }}>
@@ -160,82 +177,103 @@ style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
 )}
 </nav>
 <section
-className="baroque-gallery"
-style={{
-display: 'grid',
-gridTemplateColumns: `repeat(${columns}, 1fr)`,
-gap: '40px 32px',
-}}
+	className="baroque-gallery"
+	style={{
+		display: 'grid',
+		gridTemplateColumns: `repeat(${columns}, 1fr)`,
+		gap: '40px 32px',
+	}}
 >
-{artPieces.map((piece, idx) => (
-						<React.Fragment key={idx}>
-							<div className="baroque-card" style={{ cursor: 'pointer', position: 'relative' }}>
-								<div 
-									className="baroque-img-container"
-									style={{ position: 'relative', overflow: 'hidden' }}
-									onClick={() => openModal(idx)}
+		{artPieces.slice(0, visibleCount).map((piece, idx) => (
+			<React.Fragment key={idx}>
+				<div className="baroque-card" style={{ cursor: 'pointer', position: 'relative' }}>
+					<div
+						className="baroque-img-container"
+						style={{ position: 'relative', overflow: 'hidden' }}
+						onClick={() => openModal(idx)}
+					>
+						<img
+							src={piece.imgs[cardImageIndexes[idx]]}
+							alt={piece.name}
+							className="baroque-img"
+						/>
+						{/* Image navigation for cards with multiple images */}
+						{piece.imgs.length > 1 && (
+							<>
+								<button
+									className="baroque-card-nav baroque-card-nav-prev"
+									onClick={(e) => {
+										e.stopPropagation();
+										handleCardImageChange(idx, 'prev');
+									}}
+									title="Previous image"
 								>
-									<img
-										src={piece.imgs[cardImageIndexes[idx]]}
-										alt={piece.name}
-										className="baroque-img"
-									/>
-									
-									{/* Image navigation for cards with multiple images */}
-									{piece.imgs.length > 1 && (
-										<>
-											<button
-												className="baroque-card-nav baroque-card-nav-prev"
-												onClick={(e) => {
-													e.stopPropagation();
-													handleCardImageChange(idx, 'prev');
-												}}
-												title="Previous image"
-											>
-												<FontAwesomeIcon icon={faChevronLeft} />
-											</button>
-											<button
-												className="baroque-card-nav baroque-card-nav-next"
-												onClick={(e) => {
-													e.stopPropagation();
-													handleCardImageChange(idx, 'next');
-												}}
-												title="Next image"
-											>
-												<FontAwesomeIcon icon={faChevronRight} />
-											</button>
-											
-											{/* Image indicators */}
-											<div className="baroque-card-indicators">
-												{piece.imgs.map((_, imgIdx) => (
-													<div
-														key={imgIdx}
-														className={`baroque-card-indicator ${
-															imgIdx === cardImageIndexes[idx] ? 'active' : ''
-														}`}
-														onClick={(e) => {
-															e.stopPropagation();
-															setCardImageIndexes(prev => {
-																const newIndexes = [...prev];
-																newIndexes[idx] = imgIdx;
-																return newIndexes;
-															});
-														}}
-													/>
-												))}
-											</div>
-										</>
-									)}
+									<FontAwesomeIcon icon={faChevronLeft} />
+								</button>
+								<button
+									className="baroque-card-nav baroque-card-nav-next"
+									onClick={(e) => {
+										e.stopPropagation();
+										handleCardImageChange(idx, 'next');
+									}}
+									title="Next image"
+								>
+									<FontAwesomeIcon icon={faChevronRight} />
+								</button>
+								{/* Image indicators */}
+								<div className="baroque-card-indicators">
+									{piece.imgs.map((_, imgIdx) => (
+										<div
+											key={imgIdx}
+											className={`baroque-card-indicator ${
+												imgIdx === cardImageIndexes[idx] ? 'active' : ''
+											}`}
+											onClick={(e) => {
+												e.stopPropagation();
+												setCardImageIndexes(prev => {
+													const newIndexes = [...prev];
+													newIndexes[idx] = imgIdx;
+													return newIndexes;
+												});
+											}}
+										/>
+									))}
 								</div>
-								
-								<div className="baroque-info">
-									<div className="baroque-name">{piece.name}</div>
-									<div className="baroque-artist">{piece.artist}</div>
-								</div>
-							</div>
-						</React.Fragment>
-					))}
+							</>
+						)}
+					</div>
+					{/* Like/Dislike UI */}
+					<div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '8px 0 0 0', justifyContent: 'center' }}>
+						<button onClick={(e) => { e.stopPropagation(); handleLike(idx); }} title="Like" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+							<LikeIcon style={{ width: 28, height: 28, marginRight: 4, color: 'red' }} />
+							<span style={{ fontWeight: 600, color: '#1C274C' }}>{likes[idx]}</span>
+						</button>
+						<button onClick={(e) => { e.stopPropagation(); handleDislike(idx); }} title="Dislike" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+							<DislikeIcon style={{ width: 28, height: 28, marginRight: 4 }} />
+							<span style={{ fontWeight: 600, color: '#1C274C' }}>{dislikes[idx]}</span>
+						</button>
+					</div>
+					<div className="baroque-info">
+						<div className="baroque-name">{piece.name}</div>
+						<div className="baroque-artist">{piece.artist}</div>
+					</div>
+				</div>
+			</React.Fragment>
+		))}
 </section>
+{visibleCount < artPieces.length && (
+	<div style={{ textAlign: 'center', margin: '32px 0' }}>
+		<button
+			className="baroque-showmore"
+			onClick={() => setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, artPieces.length))}
+		>
+			Show More
+		</button>
+	</div>
+)}
+
+{/* Footer Section */}
+
 <Footer container className="baroque-footer-custom">
 <div className="w-full">
 <div className="w-full baroque-footer-top">
@@ -249,17 +287,21 @@ className="baroque-footer-brand"
 <FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('legal'); }} className="baroque-footer-link">Privacy Policy</FooterLink>
 <FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('legal'); }} className="baroque-footer-link">Licensing</FooterLink>
 <FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('contact'); }} className="baroque-footer-link">Contact</FooterLink>
+
+
 </FooterLinkGroup>
 </div>
+
 <FooterDivider className="baroque-footer-divider" />
 <div className="baroque-footer-bottom">
-<FooterCopyright href="#" by="Dragos Petrescu™" year={new Date().getFullYear()} className="baroque-footer-copyright-text" />
+<FooterCopyright href="#" by=" GhostShell Systems LLC™ " year={new Date().getFullYear()} className="baroque-footer-copyright-text" />
 </div>
-<div className="baroque-footer-date">
-{new Date().toLocaleDateString()} | {new Date().toLocaleTimeString()}
-</div>
+
 </div>
 </Footer>
+
+
+
 {selected !== null && (
 <React.Fragment>
 <div
