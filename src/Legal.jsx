@@ -180,10 +180,7 @@ function Legal({ onBack }) {
 					</div>
 					<FooterDivider className="baroque-footer-divider" />
 					<div className="baroque-footer-bottom">
-						<FooterCopyright href="#" by="Dragos Petrescu™" year={new Date().getFullYear()} className="baroque-footer-copyright-text" />
-					</div>
-					<div className="baroque-footer-date">
-						{new Date().toLocaleDateString()} | {new Date().toLocaleTimeString()}
+						<FooterCopyright href="#" by=" GhostShell Systems LLC™ " year={new Date().getFullYear()} className="baroque-footer-copyright-text" />
 					</div>
 				</div>
 			</Footer>

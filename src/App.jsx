@@ -24,13 +24,13 @@ const artPieces = [
 	{ imgs: ['Leaf Life.jpg','12.JPG','121.JPG'], name: 'Leaf Life', artist: 'Adriana Codescu', medium: 'Oil on Canvas', dimensions: '16" × 20"', desc: 'A serene depiction of life through the lens of a leaf.' },
 	
 	// Oil on Wood Board
-	{ imgs: ['American Clown.jpg','16.JPG','17.JPG','18.JPG'], name: 'American Clown', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A colorful and whimsical portrait of an American clown.' },
+	{ imgs: ['American Clown2.jpg','16.JPG','17.JPG','18.JPG'], name: 'American Clown', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A colorful and whimsical portrait of an American clown.' },
 	{ imgs: ['Gorilla Joy.jpg','19.JPG'], name: 'Gorilla Joy', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A joyful gorilla captured in a moment of happiness.' },
 	{ imgs: ['Gorilla with Purse.jpg','13.JPG'], name: 'Gorilla with Purse', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '20" × 30"', desc: 'A humorous portrait of a gorilla holding a purse.' },
 	{ imgs: ['Leonardo Dicaprio - Wolf of Wall Street - Cash.jpg','10.JPG'], name: 'Leonardo DiCaprio - Wolf of Wall Street', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Leonardo DiCaprio surrounded by cash from The Wolf of Wall Street.' },
-	{ imgs: ['Louie V Raven.jpg','14.JPG'], name: 'Louie V Raven', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '18" × 24"', desc: 'A stylish raven with Louis Vuitton flair.' },
+	{ imgs: ['Louie V Raven2.jpg','14.JPG'], name: 'Louie V Raven', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '18" × 24"', desc: 'A stylish raven with Louis Vuitton flair.' },
 	{ imgs: ['Maple Syrup.jpg','20.JPG'], name: 'Maple Syrup', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '16" × 20"', desc: 'A sweet and delicious depiction of maple syrup.' },
-	{ imgs: ['Retired Batman.jpg','15.JPG'], name: 'Retired Batman', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Batman in his later years, retired but still heroic.' },
+	{ imgs: ['Retired Batman2.jpg','15.JPG'], name: 'Retired Batman', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Batman in his later years, retired but still heroic.' },
 	
 	// Oil on Wood Board, Varnish
 	{ imgs: ['Cat Stare.jpg','11.JPG','111.JPG'], name: 'Cat Stare', artist: 'Alex Petrescu', medium: 'Oil on Wood Board, Varnish', dimensions: '16" × 20"', desc: 'An intense and mesmerizing cat stare.' },
@@ -87,7 +87,7 @@ function App() {
 	}, []);
 
 // Responsive columns: 3 desktop, 2 medium, 1 mobile
-	let columns = 3;
+	let columns = 2;
 	if (window.innerWidth <= 900) columns = 2;
 	if (window.innerWidth <= 600) columns = 1;
 
@@ -171,23 +171,29 @@ return (
 		Collection - {artPieces.length} Pieces
 	</div>
 </div>
-<div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center', marginRight: '32px' }}>
-<button
-className="baroque-menu-btn"
-title="Menu"
-style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-onClick={() => setMenuOpen((open) => !open)}
->
-<FontAwesomeIcon icon={faBook} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-</button>
-<button
-className="baroque-menu-btn"
-title="Cart"
-style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
->
-<FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-</button>
+<div style={{ display: 'flex', flexDirection: 'row', gap: '32px', alignItems: 'center', marginRight: '32px' }}>
+	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('gallery')}>Home</span>
+	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('about')}>About</span>
+	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('contact')}>Contact</span>
+	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('legal')}>Legal</span>
+	{/* Menu and Cart icons remain */}
+	<button
+		className="baroque-menu-btn"
+		title="Menu"
+		style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+		// onClick={() => setMenuOpen((open) => !open)}
+	>
+		<FontAwesomeIcon icon={faBook} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
+	</button>
+	<button
+		className="baroque-menu-btn"
+		title="Cart"
+		style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+	>
+		<FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
+	</button>
 </div>
+{/*
 {menuOpen && (
 <div className="baroque-menu-dropdown">
 <button className="baroque-menu-item" onClick={() => handlePageChange('gallery')}>Home</button>
@@ -196,6 +202,7 @@ style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
 <button className="baroque-menu-item" onClick={() => handlePageChange('legal')}>Legal</button>
 </div>
 )}
+*/}
 </nav>
 <section
 	className="baroque-gallery"
@@ -398,7 +405,7 @@ title="Close"
 className="baroque-top-arrow"
 onClick={() => {
 // Simple smooth scroll with duration control
-const duration = 1000; // 1 second
+const duration = 500; // 0.5 second (faster scroll)
 const start = window.pageYOffset;
 const startTime = performance.now();
 
@@ -423,34 +430,22 @@ requestAnimationFrame(animateScroll);
 }}
 title="Back to top"
 >
-<svg
-width="48"
-height="48"
-viewBox="0 0 48 48"
-fill="none"
-xmlns="http://www.w3.org/2000/svg"
->
-<circle
-cx="24"
-cy="24"
-r="22"
-stroke="#000"
-strokeWidth="3"
-fill="#000"
-/>
-<path
-d="M24 32 V16"
-stroke="#fff"
-strokeWidth="3"
-strokeLinecap="round"
-/>
-<path
-d="M16 24 L24 16 L32 24"
-stroke="#fff"
-strokeWidth="3"
-strokeLinecap="round"
-fill="none"
-/>
+<svg version="1.1" id="icons_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	viewBox="0 0 128 128" style={{ width: 48, height: 48 }} xmlSpace="preserve">
+	{/* Rounded rectangle background for rounded viewbox effect */}
+	<rect x="4" y="4" width="120" height="120" rx="50" fill="#fff" stroke="#0A0A0A" strokeWidth="4" />
+	<g id="row2_1_">
+		<g id="_x34__3_">
+			<g id="up">
+				<g>
+					<path fill="#0A0A0A" d="M64,0.3C28.7,0.3,0,28.8,0,64s28.7,63.7,64,63.7c35.3,0,64-28.5,64-63.7S99.3,0.3,64,0.3z M64,121.3
+						C32.2,121.3,6.4,95.7,6.4,64C6.4,32.3,32.2,6.7,64,6.7c31.8,0,57.6,25.7,57.6,57.3C121.6,95.7,95.8,121.3,64,121.3z M38.4,58.9
+						V66c0,2.2,1.8,3.9,3.9,3.9l15.3-12.2v28.7c0,2.2,2.3,3.2,4.4,3.2H66c2.2,0,3.9-1.8,3.9-3.9V57.2l15.8,12.7
+						c2.2,0,3.9-1.8,3.9-3.9v-7.1L64,32.2L38.4,58.9z"/>
+				</g>
+			</g>
+		</g>
+	</g>
 </svg>
 </button>
 </React.Fragment>
