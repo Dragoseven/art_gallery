@@ -1,6 +1,5 @@
 ﻿import React, { useState } from 'react';
 import LikeIcon from './svg_icons/heart.svg?react';
-import DislikeIcon from './svg_icons/brokenHeart.svg?react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faCartShopping, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
@@ -63,15 +62,20 @@ function App() {
 	const INITIAL_COUNT = 9;
 	const LOAD_MORE_COUNT = 6;
 	const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
-	// Like/Dislike state for each art piece
+	const loaderRef = React.useRef(null);
+	// Like state for each art piece
 	const [likes, setLikes] = useState(Array(artPieces.length).fill(0));
-	const [dislikes, setDislikes] = useState(Array(artPieces.length).fill(0));
+	// Track if user has liked each painting (per session)
+	const [userLiked, setUserLiked] = useState(Array(artPieces.length).fill(false));
 
 	const handleLike = (idx) => {
-		setLikes(prev => prev.map((val, i) => i === idx ? val + 1 : val));
-	};
-	const handleDislike = (idx) => {
-		setDislikes(prev => prev.map((val, i) => i === idx ? val + 1 : val));
+		if (!userLiked[idx]) {
+			setLikes(prev => prev.map((val, i) => i === idx ? val + 1 : val));
+			setUserLiked(prev => prev.map((val, i) => i === idx ? true : val));
+		} else {
+			setLikes(prev => prev.map((val, i) => i === idx ? Math.max(val - 1, 0) : val));
+			setUserLiked(prev => prev.map((val, i) => i === idx ? false : val));
+		}
 	};
 
 	React.useEffect(() => {
@@ -127,15 +131,32 @@ function App() {
 		setSelectedImageIndex(cardImageIndexes[cardIndex]);
 	};
 
+	// Infinite scroll effect
+	React.useEffect(() => {
+		if (visibleCount >= artPieces.length) return;
+		const observer = new window.IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting) {
+					setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, artPieces.length));
+				}
+			},
+			{ threshold: 1 }
+		);
+		if (loaderRef.current) {
+			observer.observe(loaderRef.current);
+		}
+		return () => {
+			if (loaderRef.current) observer.unobserve(loaderRef.current);
+		};
+	}, [visibleCount, artPieces.length]);
+
 	// Page routing logic
 	if (currentPage === 'about') {
 		return <About onBack={handleBackToGallery} />;
 	}
-	
 	if (currentPage === 'contact') {
 		return <Contact onBack={handleBackToGallery} />;
 	}
-	
 	if (currentPage === 'legal') {
 		return <Legal onBack={handleBackToGallery} />;
 	}
@@ -242,15 +263,15 @@ style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
 							</>
 						)}
 					</div>
-					{/* Like/Dislike UI */}
+					{/* Like UI (one like per user per painting) */}
 					<div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '8px 0 0 0', justifyContent: 'center' }}>
-						<button onClick={(e) => { e.stopPropagation(); handleLike(idx); }} title="Like" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-							<LikeIcon style={{ width: 28, height: 28, marginRight: 4, color: 'red' }} />
+						<button
+							onClick={(e) => { e.stopPropagation(); handleLike(idx); }}
+							title={userLiked[idx] ? 'Retract like' : 'Like'}
+							style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', opacity: 1 }}
+						>
+							<LikeIcon style={{ width: 28, height: 28, marginRight: 4, color: userLiked[idx] ? 'red' : '#aaa' }} />
 							<span style={{ fontWeight: 600, color: '#1C274C' }}>{likes[idx]}</span>
-						</button>
-						<button onClick={(e) => { e.stopPropagation(); handleDislike(idx); }} title="Dislike" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-							<DislikeIcon style={{ width: 28, height: 28, marginRight: 4 }} />
-							<span style={{ fontWeight: 600, color: '#1C274C' }}>{dislikes[idx]}</span>
 						</button>
 					</div>
 					<div className="baroque-info">
@@ -261,14 +282,11 @@ style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
 			</React.Fragment>
 		))}
 </section>
+
+{/* Infinite scroll loader */}
 {visibleCount < artPieces.length && (
-	<div style={{ textAlign: 'center', margin: '32px 0' }}>
-		<button
-			className="baroque-showmore"
-			onClick={() => setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, artPieces.length))}
-		>
-			Show More
-		</button>
+	<div ref={loaderRef} style={{ height: 40, textAlign: 'center', margin: '32px 0', color: '#7c6a4a', fontSize: '1.2rem' }}>
+		Loading more art...
 	</div>
 )}
 
