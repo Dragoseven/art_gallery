@@ -3,7 +3,7 @@
   "private": false,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://dragospetrescu.github.io/art_gallery/",
+  "homepage": "/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

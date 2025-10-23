@@ -6,7 +6,6 @@ import svgr from 'vite-plugin-svgr';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: '/art_gallery/',
   server: {
     host: '0.0.0.0', // Allow external connections
     port: 5173,
@@ -15,7 +14,7 @@ export default defineConfig({
     cors: true // Enable CORS
   },
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     assetsDir: 'assets',
   }
 })
