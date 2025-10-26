@@ -63,7 +63,7 @@ function Contact({ onBack }) {
 								<FontAwesomeIcon icon={faEnvelope} className="baroque-contact-icon" />
 								<div>
 									<h3>Email</h3>
-									<p>dragos@artlaundromat.com</p>
+									<p>admin@artlaundromat.com</p>
 								</div>
 							</div>
 
@@ -71,7 +71,7 @@ function Contact({ onBack }) {
 								<FontAwesomeIcon icon={faPhone} className="baroque-contact-icon" />
 								<div>
 									<h3>Phone</h3>
-									<p>+1 (555) 123-4567</p>
+									<p>Coming Soon</p>
 								</div>
 							</div>
 

@@ -1,5 +1,4 @@
 ﻿import React, { useState } from 'react';
-import LikeIcon from './svg_icons/heart.svg?react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faCartShopping, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
@@ -7,49 +6,49 @@ import About from './About';
 import Contact from './Contact';
 import Legal from './Legal';
 import './App.css';
+import LogoAndTextsvg from './svg_icons/LogoAndTextsvg.svg';
 
 const artPieces = [
 	// Acrylic on Canvas
-	{ imgs: ['Color Dash Equestrian.jpg','8.JPG','9.JPG'], name: 'Color Dash Equestrian', artist: 'Adriana Codescu', medium: 'Acrylic on Canvas', dimensions: '30" × 40"', desc: 'A vibrant equestrian scene with dashing colors.' },
+	{ imgs: ['8.JPG'], name: 'Color Dash Equestrian', artist: 'Adriana Codescu', medium: 'Acrylic on Canvas', dimensions: '30" × 40"', desc: 'A vibrant equestrian scene with dashing colors.' },
 	
 	// Graphite on Paper
-	{ imgs: ['Brad Pitt.jpg', 'portrait5.JPG'], name: 'Brad Pitt', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A captivating portrait of Brad Pitt.' },
-	{ imgs: ['Jung Ho-yeon - Squid Game.jpg','portrait2.JPG'], name: 'Jung Ho-yeon - Squid Game', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A powerful portrait of Jung Ho-yeon from Squid Game.' },
-	{ imgs: ['Leonardo Dicaprio.jpg','portrait4.JPG'], name: 'Leonardo DiCaprio', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A classic portrait of Leonardo DiCaprio.' },
-	{ imgs: ['Marylin Monroe.jpg','portrait1.JPG'], name: 'Marilyn Monroe', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'An iconic portrait of Marilyn Monroe.' },
-	{ imgs: ['Prince.jpg','portrait3.JPG'], name: 'Prince', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A legendary portrait of the artist Prince.' },
-	{ imgs: ['Thoughts - Maksim Sarkysian.jpg','7.JPG'], name: 'Thoughts', artist: 'Maksim Sarkysian', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A contemplative piece titled "Thoughts" by Maksim Sarkysian.' },
+	{ imgs: ['portrait5.JPG'], name: 'Brad Pitt', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A captivating portrait of Brad Pitt.' },
+	{ imgs: ['portrait2.JPG'], name: 'Jung Ho-yeon - Squid Game', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A powerful portrait of Jung Ho-yeon from Squid Game.' },
+	{ imgs: ['portrait4.JPG'], name: 'Leonardo DiCaprio', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A classic portrait of Leonardo DiCaprio.' },
+	{ imgs: ['portrait1.JPG'], name: 'Marilyn Monroe', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'An iconic portrait of Marilyn Monroe.' },
+	{ imgs: ['portrait3.JPG'], name: 'Prince', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A legendary portrait of the artist Prince.' },
+	{ imgs: ['7.JPG'], name: 'Thoughts', artist: 'Maksim Sarkysian', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A contemplative piece titled "Thoughts" by Maksim Sarkysian.' },
 	
 	// Oil on Canvas
-	{ imgs: ['Leaf Life.jpg','12.JPG','121.JPG'], name: 'Leaf Life', artist: 'Adriana Codescu', medium: 'Oil on Canvas', dimensions: '16" × 20"', desc: 'A serene depiction of life through the lens of a leaf.' },
+	{ imgs: ['12.JPG'], name: 'Leaf Life', artist: 'Adriana Codescu', medium: 'Oil on Canvas', dimensions: '16" × 20"', desc: 'A serene depiction of life through the lens of a leaf.' },
 	
 	// Oil on Wood Board
-	{ imgs: ['American Clown2.jpg','16.JPG','17.JPG','18.JPG'], name: 'American Clown', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A colorful and whimsical portrait of an American clown.' },
-	{ imgs: ['Gorilla Joy.jpg','19.JPG'], name: 'Gorilla Joy', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A joyful gorilla captured in a moment of happiness.' },
-	{ imgs: ['Gorilla with Purse.jpg','13.JPG'], name: 'Gorilla with Purse', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '20" × 30"', desc: 'A humorous portrait of a gorilla holding a purse.' },
-	{ imgs: ['Leonardo Dicaprio - Wolf of Wall Street - Cash.jpg','10.JPG'], name: 'Leonardo DiCaprio - Wolf of Wall Street', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Leonardo DiCaprio surrounded by cash from The Wolf of Wall Street.' },
-	{ imgs: ['Louie V Raven2.jpg','14.JPG'], name: 'Louie V Raven', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '18" × 24"', desc: 'A stylish raven with Louis Vuitton flair.' },
-	{ imgs: ['Maple Syrup.jpg','20.JPG'], name: 'Maple Syrup', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '16" × 20"', desc: 'A sweet and delicious depiction of maple syrup.' },
-	{ imgs: ['Retired Batman2.jpg','15.JPG'], name: 'Retired Batman', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Batman in his later years, retired but still heroic.' },
+	{ imgs: ['16.JPG'], name: 'American Clown', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A colorful and whimsical portrait of an American clown.' },
+	{ imgs: ['19.JPG'], name: 'Gorilla Joy', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A joyful gorilla captured in a moment of happiness.' },
+	{ imgs: ['13.JPG'], name: 'Gorilla with Purse', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '20" × 30"', desc: 'A humorous portrait of a gorilla holding a purse.' },
+	{ imgs: ['10.JPG'], name: 'Leonardo DiCaprio - Wolf of Wall Street', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Leonardo DiCaprio surrounded by cash from The Wolf of Wall Street.' },
+	{ imgs: ['14.JPG'], name: 'Louie V Raven', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '18" × 24"', desc: 'A stylish raven with Louis Vuitton flair.' },
+	{ imgs: ['20.JPG'], name: 'Maple Syrup', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '16" × 20"', desc: 'A sweet and delicious depiction of maple syrup.' },
+	{ imgs: ['15.JPG'], name: 'Retired Batman', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Batman in his later years, retired but still heroic.' },
 	
 	// Oil on Wood Board, Varnish
-	{ imgs: ['Cat Stare.jpg','11.JPG','111.JPG'], name: 'Cat Stare', artist: 'Alex Petrescu', medium: 'Oil on Wood Board, Varnish', dimensions: '16" × 20"', desc: 'An intense and mesmerizing cat stare.' },
+	{ imgs: ['11.JPG'], name: 'Cat Stare', artist: 'Alex Petrescu', medium: 'Oil on Wood Board, Varnish', dimensions: '16" × 20"', desc: 'An intense and mesmerizing cat stare.' },
 	
 	// Watercolor on Dollar Bill
-	{ imgs: ['Baby Yoda Bill.jpg','21.JPG'], name: 'Baby Yoda Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: 'An adorable portrait of Baby Yoda.' },
-	{ imgs: ['Mario Bill.jpg','22.JPG'], name: 'Mario Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: "A playful portrait of Mario's Bullet Bill." },
+	{ imgs: ['21.JPG'], name: 'Baby Yoda Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: 'An adorable portrait of Baby Yoda.' },
+	{ imgs: ['22.JPG'], name: 'Mario Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: "A playful portrait of Mario's Bullet Bill." },
 	
 	// Watercolor on Textured Paper
-	{ imgs: ['Anya Taylor-Joy - The Queen\'s Gambit2.jpg','1.JPG'], name: "Anya Taylor-Joy - The Queen's Gambit", artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: "Another captivating portrait from The Queen's Gambit series." },
-	{ imgs: ['Blonde Girl with Goggles2.jpg','2.JPG'], name: 'Blonde Girl with Goggles', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: 'Another perspective of the blonde girl with goggles.' },
-	{ imgs: ['Dead Cyborg Insect.jpg','6.JPG'], name: 'Dead Cyborg Insect', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '18" × 24"', desc: 'A surreal depiction of a dead cyborg insect.' },
-	{ imgs: ['Penguin - Batman2.jpg','3.JPG'], name: 'Penguin - Batman', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: "Another menacing portrait of Batman's Penguin." },
-	{ imgs: ['Zendaya - Dune.jpg','4.JPG'], name: 'Zendaya - Dune', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: 'A stunning portrait of Zendaya from Dune.' },
+	{ imgs: ['1.JPG'], name: "Anya Taylor-Joy - The Queen's Gambit", artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: "Another captivating portrait from The Queen's Gambit series." },
+	{ imgs: ['2.JPG'], name: 'Blonde Girl with Goggles', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: 'Another perspective of the blonde girl with goggles.' },
+	{ imgs: ['6.JPG'], name: 'Dead Cyborg Insect', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '18" × 24"', desc: 'A surreal depiction of a dead cyborg insect.' },
+	{ imgs: ['3.JPG'], name: 'Penguin - Batman', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: "Another menacing portrait of Batman's Penguin." },
+	{ imgs: ['4.JPG'], name: 'Zendaya - Dune', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: 'A stunning portrait of Zendaya from Dune.' },
 ];
 
 
 function App() {
-	const [showTopArrow, setShowTopArrow] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [selected, setSelected] = useState(null);
 	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -58,40 +57,17 @@ function App() {
 	const [cardImageIndexes, setCardImageIndexes] = useState(
 		artPieces.map(() => 0)
 	);
-	// For lazy loading art pieces
-	const INITIAL_COUNT = 9;
-	const LOAD_MORE_COUNT = 6;
-	const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
-	const loaderRef = React.useRef(null);
-	// Like state for each art piece
-	const [likes, setLikes] = useState(Array(artPieces.length).fill(0));
-	// Track if user has liked each painting (per session)
-	const [userLiked, setUserLiked] = useState(Array(artPieces.length).fill(false));
+	// Pagination
+	const ITEMS_PER_PAGE = 12;
+	const [currentGalleryPage, setCurrentGalleryPage] = useState(1);
+	const totalPages = Math.ceil(artPieces.length / ITEMS_PER_PAGE);
 
-	const handleLike = (idx) => {
-		if (!userLiked[idx]) {
-			setLikes(prev => prev.map((val, i) => i === idx ? val + 1 : val));
-			setUserLiked(prev => prev.map((val, i) => i === idx ? true : val));
-		} else {
-			setLikes(prev => prev.map((val, i) => i === idx ? Math.max(val - 1, 0) : val));
-			setUserLiked(prev => prev.map((val, i) => i === idx ? false : val));
-		}
-	};
-
-	React.useEffect(() => {
-		const handleScroll = () => {
-			setShowTopArrow(window.pageYOffset > 10);
-		};
-		window.addEventListener('scroll', handleScroll, { passive: true });
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
-
-// Responsive columns: 3 desktop, 2 medium, 1 mobile
-	let columns = 2;
-	if (window.innerWidth <= 900) columns = 2;
+// Responsive columns: 4 desktop, 2 medium, 1 mobile
+	let columns = 4;
+	if (window.innerWidth <= 1200) columns = 2;
 	if (window.innerWidth <= 600) columns = 1;
 
-	const handlePageChange = (page) => {
+	const handleViewChange = (page) => {
 		setCurrentPage(page);
 		setMenuOpen(false);
 	};
@@ -131,24 +107,36 @@ function App() {
 		setSelectedImageIndex(cardImageIndexes[cardIndex]);
 	};
 
-	// Infinite scroll effect
-	React.useEffect(() => {
-		if (visibleCount >= artPieces.length) return;
-		const observer = new window.IntersectionObserver(
-			(entries) => {
-				if (entries[0].isIntersecting) {
-					setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, artPieces.length));
-				}
-			},
-			{ threshold: 1 }
-		);
-		if (loaderRef.current) {
-			observer.observe(loaderRef.current);
+	// Pagination handlers
+	const handlePageChange = (page) => {
+		setCurrentGalleryPage(page);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
+
+	// Get current page items
+	const getCurrentPageItems = () => {
+		const startIndex = (currentGalleryPage - 1) * ITEMS_PER_PAGE;
+		const endIndex = startIndex + ITEMS_PER_PAGE;
+		return artPieces.slice(startIndex, endIndex);
+	};
+
+	// Check if painting is landscape (wider than tall)
+	const isLandscape = (dimensions) => {
+		// Extract numbers from dimensions string - handles "16"H × 12"W" format
+		const hwMatch = dimensions.match(/(\d+(?:\.\d+)?)"H\s*[×x]\s*(\d+(?:\.\d+)?)"W/i);
+		if (hwMatch) {
+			const height = parseFloat(hwMatch[1]);
+			const width = parseFloat(hwMatch[2]);
+			return width > height;
 		}
-		return () => {
-			if (loaderRef.current) observer.unobserve(loaderRef.current);
-		};
-	}, [visibleCount, artPieces.length]);
+		
+		// Handle standard format like "24" × 36""
+		const match = dimensions.match(/(\d+(?:\.\d+)?)"\s*[×x]\s*(\d+(?:\.\d+)?)"/i);
+		if (!match) return false;
+		const width = parseFloat(match[1]);
+		const height = parseFloat(match[2]);
+		return width > height;
+	};
 
 	// Page routing logic
 	if (currentPage === 'about') {
@@ -166,33 +154,31 @@ return (
 <div className="baroque-bg">
 <nav className="baroque-nav">
 <div className="baroque-nav-brand">
-	<div className="baroque-nav-title">Art Laundromat</div>
-	<div style={{ fontSize: '1.1rem', color: '#fffbe9', fontWeight: 400, marginTop: 2 }}>
-		Collection - {artPieces.length} Pieces
-	</div>
+	<img src={LogoAndTextsvg} alt="Art Laundromat Logo" style={{ height: '52px', marginBottom: '4px' }} />
 </div>
-<div style={{ display: 'flex', flexDirection: 'row', gap: '32px', alignItems: 'center', marginRight: '32px' }}>
-	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('gallery')}>Home</span>
-	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('about')}>About</span>
-	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('contact')}>Contact</span>
-	<span style={{ color: '#fffbe9', fontSize: '1.1rem', cursor: 'pointer' }} onClick={() => handlePageChange('legal')}>Legal</span>
-	{/* Menu and Cart icons remain */}
-	<button
-		className="baroque-menu-btn"
-		title="Menu"
-		style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-		// onClick={() => setMenuOpen((open) => !open)}
-	>
-		<FontAwesomeIcon icon={faBook} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-	</button>
-	<button
-		className="baroque-menu-btn"
-		title="Cart"
-		style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-	>
-		<FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-	</button>
-</div>
+		<div className="baroque-nav-links">
+			<span className="baroque-nav-link-item" onClick={() => handleViewChange('gallery')}>Home</span>
+			<span className="baroque-nav-link-item" onClick={() => handleViewChange('about')}>About</span>
+			<span className="baroque-nav-link-item" onClick={() => handleViewChange('contact')}>Contact</span>
+			<span className="baroque-nav-link-item" onClick={() => handleViewChange('legal')}>Legal</span>
+		</div>
+		<div className="baroque-nav-icons">
+			<button
+				className="baroque-menu-btn"
+				title="Menu"
+				style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+				// onClick={() => setMenuOpen((open) => !open)}
+			>
+				<FontAwesomeIcon icon={faBook} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
+			</button>
+			<button
+				className="baroque-menu-btn"
+				title="Cart"
+				style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+			>
+				<FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
+			</button>
+		</div>
 {/*
 {menuOpen && (
 <div className="baroque-menu-dropdown">
@@ -212,88 +198,109 @@ return (
 		gap: '40px 32px',
 	}}
 >
-		{artPieces.slice(0, visibleCount).map((piece, idx) => (
-			<React.Fragment key={idx}>
-				<div className="baroque-card" style={{ cursor: 'pointer', position: 'relative' }}>
-					<div
-						className="baroque-img-container"
-						style={{ position: 'relative', overflow: 'hidden' }}
-						onClick={() => openModal(idx)}
-					>
-						<img
-							src={piece.imgs[cardImageIndexes[idx]]}
-							alt={piece.name}
-							className="baroque-img"
-						/>
-						{/* Image navigation for cards with multiple images */}
-						{piece.imgs.length > 1 && (
-							<>
-								<button
-									className="baroque-card-nav baroque-card-nav-prev"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleCardImageChange(idx, 'prev');
-									}}
-									title="Previous image"
-								>
-									<FontAwesomeIcon icon={faChevronLeft} />
-								</button>
-								<button
-									className="baroque-card-nav baroque-card-nav-next"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleCardImageChange(idx, 'next');
-									}}
-									title="Next image"
-								>
-									<FontAwesomeIcon icon={faChevronRight} />
-								</button>
-								{/* Image indicators */}
-								<div className="baroque-card-indicators">
-									{piece.imgs.map((_, imgIdx) => (
-										<div
-											key={imgIdx}
-											className={`baroque-card-indicator ${
-												imgIdx === cardImageIndexes[idx] ? 'active' : ''
-											}`}
-											onClick={(e) => {
-												e.stopPropagation();
-												setCardImageIndexes(prev => {
-													const newIndexes = [...prev];
-													newIndexes[idx] = imgIdx;
-													return newIndexes;
-												});
-											}}
-										/>
-									))}
-								</div>
-							</>
-						)}
-					</div>
-					{/* Like UI (one like per user per painting) */}
-					<div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '8px 0 0 0', justifyContent: 'center' }}>
-						<button
-							onClick={(e) => { e.stopPropagation(); handleLike(idx); }}
-							title={userLiked[idx] ? 'Retract like' : 'Like'}
-							style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', opacity: 1 }}
-						>
-							<LikeIcon style={{ width: 28, height: 28, marginRight: 4, color: userLiked[idx] ? 'red' : '#aaa' }} />
-							<span style={{ fontWeight: 600, color: '#1C274C' }}>{likes[idx]}</span>
-						</button>
+		{getCurrentPageItems().map((piece, idx) => {
+			const originalIndex = (currentGalleryPage - 1) * ITEMS_PER_PAGE + idx;
+			const landscape = isLandscape(piece.dimensions);
+			return (
+			<React.Fragment key={originalIndex}>
+				<div 
+					className="baroque-card" 
+					style={{ 
+						cursor: 'pointer', 
+						position: 'relative',
+						gridColumn: landscape && columns >= 3 ? 'span 2' : 'span 1'
+					}}
+				>
+				<div
+					className="baroque-img-container"
+					style={{ 
+						position: 'relative', 
+						overflow: 'visible',
+						minHeight: landscape ? '600px' : 'auto'
+					}}
+					onClick={() => openModal(originalIndex)}
+				>
+					<img
+						src={piece.imgs[cardImageIndexes[originalIndex]]}
+						alt={piece.name}
+						className="baroque-img"
+					/>
+					{/* Image navigation for cards with multiple images */}
+					{piece.imgs.length > 1 && (
+						<>
+							<button
+								className="baroque-card-nav baroque-card-nav-prev"
+								onClick={(e) => {
+									e.stopPropagation();
+									handleCardImageChange(originalIndex, 'prev');
+								}}
+								title="Previous image"
+							>
+								<FontAwesomeIcon icon={faChevronLeft} />
+							</button>
+							<button
+								className="baroque-card-nav baroque-card-nav-next"
+								onClick={(e) => {
+									e.stopPropagation();
+									handleCardImageChange(originalIndex, 'next');
+								}}
+								title="Next image"
+							>
+								<FontAwesomeIcon icon={faChevronRight} />
+							</button>
+							{/* Image indicators */}
+							<div className="baroque-card-indicators">
+								{piece.imgs.map((_, imgIdx) => (
+									<div
+										key={imgIdx}
+										className={`baroque-card-indicator ${
+											imgIdx === cardImageIndexes[originalIndex] ? 'active' : ''
+										}`}
+										onClick={(e) => {
+											e.stopPropagation();
+											setCardImageIndexes(prev => {
+												const newIndexes = [...prev];
+												newIndexes[originalIndex] = imgIdx;
+												return newIndexes;
+											});
+										}}
+									/>
+								))}
+							</div>
+						</>
+					)}
 					</div>
 					<div className="baroque-info">
 						<div className="baroque-name">{piece.name}</div>
 						<div className="baroque-artist">{piece.artist}</div>
+						<div className="baroque-medium">{piece.medium}</div>
 					</div>
 				</div>
 			</React.Fragment>
-		))}
+		);
+		})}
 </section>
 
-{/* Infinite scroll loader */}
-{visibleCount < artPieces.length && (
-	<div ref={loaderRef} style={{ height: 40, textAlign: 'center', margin: '32px 0', color: '#7c6a4a', fontSize: '1.2rem' }}>
-		Loading more art...
+{/* Pagination Controls */}
+{totalPages > 1 && (
+	<div className="baroque-pagination">
+		<button 
+			className="baroque-pagination-btn"
+			onClick={() => handlePageChange(currentGalleryPage - 1)}
+			disabled={currentGalleryPage === 1}
+		>
+			Previous
+		</button>
+		<span className="baroque-pagination-info">
+			Page {currentGalleryPage} of {totalPages}
+		</span>
+		<button 
+			className="baroque-pagination-btn"
+			onClick={() => handlePageChange(currentGalleryPage + 1)}
+			disabled={currentGalleryPage === totalPages}
+		>
+			Next
+		</button>
 	</div>
 )}
 
@@ -400,54 +407,6 @@ title="Close"
 </React.Fragment>
 )}
 </div>
-{/* Always show the back-to-top arrow */}
-<button
-className="baroque-top-arrow"
-onClick={() => {
-// Simple smooth scroll with duration control
-const duration = 500; // 0.5 second (faster scroll)
-const start = window.pageYOffset;
-const startTime = performance.now();
-
-const animateScroll = (currentTime) => {
-const timeElapsed = currentTime - startTime;
-const progress = Math.min(timeElapsed / duration, 1);
-
-// Easing function for smooth animation
-const ease = 1 - Math.pow(1 - progress, 3);
-const position = start * (1 - ease);
-
-window.scrollTo(0, position);
-
-if (progress < 1) {
-requestAnimationFrame(animateScroll);
-} else {
-window.scrollTo(0, 0); // Ensure we end exactly at top
-}
-};
-
-requestAnimationFrame(animateScroll);
-}}
-title="Back to top"
->
-<svg version="1.1" id="icons_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	viewBox="0 0 128 128" style={{ width: 48, height: 48 }} xmlSpace="preserve">
-	{/* Rounded rectangle background for rounded viewbox effect */}
-	<rect x="4" y="4" width="120" height="120" rx="50" fill="#fff" stroke="#0A0A0A" strokeWidth="4" />
-	<g id="row2_1_">
-		<g id="_x34__3_">
-			<g id="up">
-				<g>
-					<path fill="#0A0A0A" d="M64,0.3C28.7,0.3,0,28.8,0,64s28.7,63.7,64,63.7c35.3,0,64-28.5,64-63.7S99.3,0.3,64,0.3z M64,121.3
-						C32.2,121.3,6.4,95.7,6.4,64C6.4,32.3,32.2,6.7,64,6.7c31.8,0,57.6,25.7,57.6,57.3C121.6,95.7,95.8,121.3,64,121.3z M38.4,58.9
-						V66c0,2.2,1.8,3.9,3.9,3.9l15.3-12.2v28.7c0,2.2,2.3,3.2,4.4,3.2H66c2.2,0,3.9-1.8,3.9-3.9V57.2l15.8,12.7
-						c2.2,0,3.9-1.8,3.9-3.9v-7.1L64,32.2L38.4,58.9z"/>
-				</g>
-			</g>
-		</g>
-	</g>
-</svg>
-</button>
 </React.Fragment>
 );
 }

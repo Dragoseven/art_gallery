@@ -46,11 +46,12 @@ function About({ onBack }) {
 						<div className="baroque-about-icon">
 							<FontAwesomeIcon icon={faUsers} />
 						</div>
-						<h2>Our Artists</h2>
+						<h2>Our Roots</h2>
 						<p>
-							We proudly feature works from exceptional artists including Adriana Codescu, Alex Petrescu, 
-							and Maksim Sarkysian. Each artist brings their unique perspective and mastery of various 
-							mediums including oil on canvas, watercolor, graphite, and mixed media compositions.
+							Art Laundromat was founded in 2025 by GhostShell Systems LLC™, a small team of passionate artists and technologists 
+							who believe that art should be accessible to everyone. We are based in the United States and our mission is to 
+							bring exceptional art to digital spaces. We are have Veteran roots and we are proud to support the veteran community.
+							We are also proud to support the artist community and we are always looking for new and exciting artists to feature on our platform.
 						</p>
 					</div>
 
