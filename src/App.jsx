@@ -10,41 +10,48 @@ import LogoAndTextsvg from './svg_icons/LogoAndTextsvg.svg';
 
 const artPieces = [
 	// Acrylic on Canvas
-	{ imgs: ['8.JPG'], name: 'Color Dash Equestrian', artist: 'Adriana Codescu', medium: 'Acrylic on Canvas', dimensions: '30" × 40"', desc: 'A vibrant equestrian scene with dashing colors.' },
+	{ imgs: ['8.JPG'], name: 'Color Dash Equestrian', artist: 'Adriana Codescu', medium: 'Acrylic on Canvas', dimensions: '30" × 40"', desc: 'A vibrant equestrian scene with dashing colors.', publishDate: '2025-10-08' },
 	
 	// Graphite on Paper
-	{ imgs: ['portrait5.JPG'], name: 'Brad Pitt', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A captivating portrait of Brad Pitt.' },
-	{ imgs: ['portrait2.JPG'], name: 'Jung Ho-yeon - Squid Game', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A powerful portrait of Jung Ho-yeon from Squid Game.' },
-	{ imgs: ['portrait4.JPG'], name: 'Leonardo DiCaprio', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A classic portrait of Leonardo DiCaprio.' },
-	{ imgs: ['portrait1.JPG'], name: 'Marilyn Monroe', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'An iconic portrait of Marilyn Monroe.' },
-	{ imgs: ['portrait3.JPG'], name: 'Prince', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A legendary portrait of the artist Prince.' },
-	{ imgs: ['7.JPG'], name: 'Thoughts', artist: 'Maksim Sarkysian', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A contemplative piece titled "Thoughts" by Maksim Sarkysian.' },
+	{ imgs: ['portrait5.JPG'], name: 'Brad Pitt', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A captivating portrait of Brad Pitt.', publishDate: '2025-10-08' },
+	{ imgs: ['portrait2.JPG'], name: 'Jung Ho-yeon - Squid Game', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A powerful portrait of Jung Ho-yeon from Squid Game.', publishDate: '2025-10-08' },
+	{ imgs: ['portrait4.JPG'], name: 'Leonardo DiCaprio', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A classic portrait of Leonardo DiCaprio.', publishDate: '2025-10-08' },
+	{ imgs: ['portrait1.JPG'], name: 'Marilyn Monroe', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'An iconic portrait of Marilyn Monroe.', publishDate: '2025-10-08' },
+	{ imgs: ['portrait3.JPG'], name: 'Prince', artist: 'Alex Petrescu', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A legendary portrait of the artist Prince.', publishDate: '2025-10-08' },
+	{ imgs: ['7.JPG'], name: 'Thoughts', artist: 'Maksim Sarkysian', medium: 'Graphite on Paper', dimensions: '16"H × 12"W', desc: 'A contemplative piece titled "Thoughts" by Maksim Sarkysian.', publishDate: '2025-10-08' },
 	
 	// Oil on Canvas
-	{ imgs: ['12.JPG'], name: 'Leaf Life', artist: 'Adriana Codescu', medium: 'Oil on Canvas', dimensions: '16" × 20"', desc: 'A serene depiction of life through the lens of a leaf.' },
+	{ imgs: ['12.JPG'], name: 'Leaf Life', artist: 'Adriana Codescu', medium: 'Oil on Canvas', dimensions: '16" × 20"', desc: 'A serene depiction of life through the lens of a leaf.', publishDate: '2025-10-08' },
 	
 	// Oil on Wood Board
-	{ imgs: ['16.JPG'], name: 'American Clown', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A colorful and whimsical portrait of an American clown.' },
-	{ imgs: ['19.JPG'], name: 'Gorilla Joy', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A joyful gorilla captured in a moment of happiness.' },
-	{ imgs: ['13.JPG'], name: 'Gorilla with Purse', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '20" × 30"', desc: 'A humorous portrait of a gorilla holding a purse.' },
-	{ imgs: ['10.JPG'], name: 'Leonardo DiCaprio - Wolf of Wall Street', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Leonardo DiCaprio surrounded by cash from The Wolf of Wall Street.' },
-	{ imgs: ['14.JPG'], name: 'Louie V Raven', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '18" × 24"', desc: 'A stylish raven with Louis Vuitton flair.' },
-	{ imgs: ['20.JPG'], name: 'Maple Syrup', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '16" × 20"', desc: 'A sweet and delicious depiction of maple syrup.' },
-	{ imgs: ['15.JPG'], name: 'Retired Batman', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Batman in his later years, retired but still heroic.' },
+	{ imgs: ['16.JPG'], name: 'American Clown', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A colorful and whimsical portrait of an American clown.', publishDate: '2025-10-08' },
+	{ imgs: ['19.JPG'], name: 'Gorilla Joy', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A joyful gorilla captured in a moment of happiness.', publishDate: '2025-10-08' },
+	{ imgs: ['13.JPG'], name: 'Gorilla with Purse', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '20" × 30"', desc: 'A humorous portrait of a gorilla holding a purse.', publishDate: '2025-10-08' },
+	{ imgs: ['10.JPG'], name: 'Leonardo DiCaprio - Wolf of Wall Street', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Leonardo DiCaprio surrounded by cash from The Wolf of Wall Street.', publishDate: '2025-10-08' },
+	{ imgs: ['14.JPG'], name: 'Louie V Raven', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '18" × 24"', desc: 'A stylish raven with Louis Vuitton flair.', publishDate: '2025-10-08' },
+	{ imgs: ['20.JPG'], name: 'Maple Syrup', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '16" × 20"', desc: 'A sweet and delicious depiction of maple syrup.', publishDate: '2025-10-08' },
+	{ imgs: ['15.JPG'], name: 'Retired Batman', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'Batman in his later years, retired but still heroic.', publishDate: '2025-10-08' },
+	// Newly added paintings (from public/) — using filenames as requested
+	{ imgs: ['Chris.jpg'], name: 'Chris', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A moody, intimate portrait of Chris rendered with loose brushstrokes and rich, earthy tones.', publishDate: '2025-10-27' },
+	{ imgs: ['Felix.jpg'], name: 'Felix', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A lively, colorful portrait of Felix with energetic brushwork and bold contrasts that emphasize character.', publishDate: '2025-10-27' },
+	{ imgs: ['Gwen.jpg'], name: 'Gwen', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A contemplative portrait of Gwen bathed in soft, directional light that highlights delicate facial detail.', publishDate: '2025-10-27' },
+	{ imgs: ['Luna Tick.jpg'], name: 'Luna Tick', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A whimsical, moonlit composition that blends lunar motifs with playful textures and subtle surrealism.', publishDate: '2025-10-27' },
+	{ imgs: ['Chiainic.jpg'], name: 'Chiainic', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A textured study combining figurative elements with chain-like patterns and layered impasto for tactile depth.', publishDate: '2025-10-27' },
+	{ imgs: ['Smoking Priest.jpg'], name: 'Smoking Priest', artist: 'Alex Petrescu', medium: 'Oil on Wood Board', dimensions: '24" × 36"', desc: 'A striking portrait of a priest enveloped in cigarette smoke, using atmospheric haze and stark contrasts to create mood.', publishDate: '2025-10-27' },
 	
 	// Oil on Wood Board, Varnish
-	{ imgs: ['11.JPG'], name: 'Cat Stare', artist: 'Alex Petrescu', medium: 'Oil on Wood Board, Varnish', dimensions: '16" × 20"', desc: 'An intense and mesmerizing cat stare.' },
+	{ imgs: ['11.JPG'], name: 'Cat Stare', artist: 'Alex Petrescu', medium: 'Oil on Wood Board, Varnish', dimensions: '16" × 20"', desc: 'An intense and mesmerizing cat stare.', publishDate: '2025-10-08' },
 	
 	// Watercolor on Dollar Bill
-	{ imgs: ['21.JPG'], name: 'Baby Yoda Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: 'An adorable portrait of Baby Yoda.' },
-	{ imgs: ['22.JPG'], name: 'Mario Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: "A playful portrait of Mario's Bullet Bill." },
+	{ imgs: ['21.JPG'], name: 'Baby Yoda Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: 'An adorable portrait of Baby Yoda.', publishDate: '2025-10-08' },
+	{ imgs: ['22.JPG'], name: 'Mario Bill', artist: 'Alex Petrescu', medium: 'Watercolor on Dollar Bill', dimensions: '18" × 24"', desc: "A playful portrait of Mario's Bullet Bill.", publishDate: '2025-10-08' },
 	
 	// Watercolor on Textured Paper
-	{ imgs: ['1.JPG'], name: "Anya Taylor-Joy - The Queen's Gambit", artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: "Another captivating portrait from The Queen's Gambit series." },
-	{ imgs: ['2.JPG'], name: 'Blonde Girl with Goggles', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: 'Another perspective of the blonde girl with goggles.' },
-	{ imgs: ['6.JPG'], name: 'Dead Cyborg Insect', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '18" × 24"', desc: 'A surreal depiction of a dead cyborg insect.' },
-	{ imgs: ['3.JPG'], name: 'Penguin - Batman', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: "Another menacing portrait of Batman's Penguin." },
-	{ imgs: ['4.JPG'], name: 'Zendaya - Dune', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: 'A stunning portrait of Zendaya from Dune.' },
+	{ imgs: ['1.JPG'], name: "Anya Taylor-Joy - The Queen's Gambit", artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: "Another captivating portrait from The Queen's Gambit series.", publishDate: '2025-10-08' },
+	{ imgs: ['2.JPG'], name: 'Blonde Girl with Goggles', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '20" × 30"', desc: 'Another perspective of the blonde girl with goggles.', publishDate: '2025-10-08' },
+	{ imgs: ['6.JPG'], name: 'Dead Cyborg Insect', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '18" × 24"', desc: 'A surreal depiction of a dead cyborg insect.', publishDate: '2025-10-08' },
+	{ imgs: ['3.JPG'], name: 'Penguin - Batman', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: "Another menacing portrait of Batman's Penguin.", publishDate: '2025-10-08' },
+	{ imgs: ['4.JPG'], name: 'Zendaya - Dune', artist: 'Alex Petrescu', medium: 'Watercolor on Textured Paper', dimensions: '24" × 36"', desc: 'A stunning portrait of Zendaya from Dune.', publishDate: '2025-10-08' },
 ];
 
 
@@ -189,7 +196,7 @@ return (
 		</div>
 	</nav>
 	
-	{/* Filter and Sort Bar */}
+	{/* Filter and Sort Bar with Pagination */}
 	<div className="baroque-filter-bar">
 		<div className="baroque-filter-section">
 			<label htmlFor="medium-filter" className="baroque-filter-label">Medium:</label>
@@ -251,6 +258,31 @@ return (
 		>
 			Reset Filters
 		</button>
+		
+		{/* Top Right Pagination */}
+		{totalPages > 1 && (
+			<div className="baroque-pagination-top">
+				<button 
+					className="baroque-pagination-arrow"
+					onClick={() => handlePageChange(currentGalleryPage - 1)}
+					disabled={currentGalleryPage === 1}
+					title="Previous page"
+				>
+					<FontAwesomeIcon icon={faChevronLeft} />
+				</button>
+				<span className="baroque-pagination-info">
+					{currentGalleryPage} / {totalPages}
+				</span>
+				<button 
+					className="baroque-pagination-arrow"
+					onClick={() => handlePageChange(currentGalleryPage + 1)}
+					disabled={currentGalleryPage === totalPages}
+					title="Next page"
+				>
+					<FontAwesomeIcon icon={faChevronRight} />
+				</button>
+			</div>
+		)}
 	</div>
 	
 <section
@@ -344,25 +376,27 @@ return (
 		})}
 </section>
 
-{/* Pagination Controls */}
+{/* Bottom Pagination Controls */}
 {totalPages > 1 && (
 	<div className="baroque-pagination">
 		<button 
-			className="baroque-pagination-btn"
+			className="baroque-pagination-arrow"
 			onClick={() => handlePageChange(currentGalleryPage - 1)}
 			disabled={currentGalleryPage === 1}
+			title="Previous page"
 		>
-			Previous
+			<FontAwesomeIcon icon={faChevronLeft} />
 		</button>
 		<span className="baroque-pagination-info">
 			Page {currentGalleryPage} of {totalPages}
 		</span>
 		<button 
-			className="baroque-pagination-btn"
+			className="baroque-pagination-arrow"
 			onClick={() => handlePageChange(currentGalleryPage + 1)}
 			disabled={currentGalleryPage === totalPages}
+			title="Next page"
 		>
-			Next
+			<FontAwesomeIcon icon={faChevronRight} />
 		</button>
 	</div>
 )}
@@ -398,76 +432,69 @@ className="baroque-footer-brand"
 
 
 {selected !== null && (
-<React.Fragment>
-<div
-className="baroque-overlay"
-onClick={() => setSelected(null)}
-/>
-<div className="baroque-slide-panel">
-<button
-className="baroque-close-btn"
-onClick={() => setSelected(null)}
-title="Close"
->
-&times;
-</button>
-<div className="baroque-slide-img-container" style={{ position: 'relative' }}>
-							<img
-								className="baroque-slide-img"
-								src={artPieces[selected].imgs[selectedImageIndex]}
-								alt={artPieces[selected].name}
-							/>
-							
-							{/* Modal navigation for multiple images */}
-							{artPieces[selected].imgs.length > 1 && (
-								<>
-									<button
-										className="baroque-modal-nav baroque-modal-nav-prev"
-										onClick={() => handleModalImageChange('prev')}
-										title="Previous image"
-									>
-										<FontAwesomeIcon icon={faChevronLeft} />
-									</button>
-									<button
-										className="baroque-modal-nav baroque-modal-nav-next"
-										onClick={() => handleModalImageChange('next')}
-										title="Next image"
-									>
-										<FontAwesomeIcon icon={faChevronRight} />
-									</button>
-									
-									{/* Image indicators for modal */}
-									<div className="baroque-modal-indicators">
-										{artPieces[selected].imgs.map((_, imgIdx) => (
-											<div
-												key={imgIdx}
-												className={`baroque-modal-indicator ${
-													imgIdx === selectedImageIndex ? 'active' : ''
-												}`}
-												onClick={() => setSelectedImageIndex(imgIdx)}
-											/>
-										))}
-									</div>
-								</>
-							)}
-						</div>
-<div className="baroque-slide-title">
-{artPieces[selected].name}
-</div>
-<div className="baroque-slide-desc">
-{artPieces[selected].desc}
-</div>
-<div className="baroque-slide-artist">
-  Artist: {artPieces[selected].artist}
-</div>
-<div className="baroque-slide-medium">
-  Medium: {artPieces[selected].medium}
-</div>
-<div className="baroque-slide-dimensions">
-  Dimensions: {artPieces[selected].dimensions}
-</div>
-</div>
-</React.Fragment>
+	<React.Fragment>
+		<div
+			className="baroque-overlay"
+			onClick={() => setSelected(null)}
+		/>
+		<div className="baroque-slide-panel baroque-slide-panel-wide">
+			<button
+				className="baroque-close-btn"
+				onClick={() => setSelected(null)}
+				title="Close"
+			>
+				&times;
+			</button>
+			<div className={`baroque-slide-content-row ${isLandscape(artPieces[selected].dimensions) ? 'baroque-slide-content-column' : ''}`}>
+				<div className="baroque-slide-img-container" style={{ position: 'relative' }}>
+					<img
+						className="baroque-slide-img"
+						src={artPieces[selected].imgs[selectedImageIndex]}
+						alt={artPieces[selected].name}
+					/>
+					{/* Modal navigation for multiple images */}
+					{artPieces[selected].imgs.length > 1 && (
+						<>
+							<button
+								className="baroque-modal-nav baroque-modal-nav-prev"
+								onClick={() => handleModalImageChange('prev')}
+								title="Previous image"
+							>
+								<FontAwesomeIcon icon={faChevronLeft} />
+							</button>
+							<button
+								className="baroque-modal-nav baroque-modal-nav-next"
+								onClick={() => handleModalImageChange('next')}
+								title="Next image"
+							>
+								<FontAwesomeIcon icon={faChevronRight} />
+							</button>
+							{/* Image indicators for modal */}
+							<div className="baroque-modal-indicators">
+								{artPieces[selected].imgs.map((_, imgIdx) => (
+									<div
+										key={imgIdx}
+										className={`baroque-modal-indicator ${
+											imgIdx === selectedImageIndex ? 'active' : ''
+										}`}
+										onClick={() => setSelectedImageIndex(imgIdx)}
+									/>
+								))}
+							</div>
+						</>
+					)}
+				</div>
+				<div className="baroque-slide-info-container">
+					<div className="baroque-slide-title">{artPieces[selected].name}</div>
+					<div className="baroque-slide-desc">{artPieces[selected].desc}</div>
+					<div className="baroque-slide-artist">Artist: {artPieces[selected].artist}</div>
+					<div className="baroque-slide-medium">Medium: {artPieces[selected].medium}</div>
+					<div className="baroque-slide-dimensions">Dimensions: {artPieces[selected].dimensions}</div>
+					<div className="baroque-slide-date">Publish Date: {artPieces[selected].publishDate}</div>
+				</div>
+			</div>
+		</div>
+	</React.Fragment>
 )}
 </div>
 </React.Fragment>

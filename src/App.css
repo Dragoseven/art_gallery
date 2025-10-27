@@ -171,6 +171,85 @@ html, body {
   animation: slideIn 0.35s cubic-bezier(.77,.2,.05,1);
   overflow-y: auto;
 }
+.baroque-slide-panel-wide {
+  width: 75vw;
+  max-width: 1200px;
+}
+.baroque-slide-content-row {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.baroque-slide-content-column {
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.baroque-slide-content-column .baroque-slide-img-container {
+  max-width: 100%;
+  width: 100%;
+  order: 1;
+  margin-bottom: 0;
+}
+
+.baroque-slide-content-column .baroque-slide-info-container {
+  max-width: 100%;
+  width: 100%;
+  order: 2;
+}
+.baroque-slide-info-container {
+  flex: 1 1 0;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid #f8f0dce2;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 28px;
+  margin: 0 0 0 0;
+  color: #f8f0dce2;
+  min-width: 320px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.baroque-slide-info-container .baroque-slide-title {
+  color: #f8f0dce2;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: left;
+}
+.baroque-slide-info-container .baroque-slide-desc {
+  color: #f8f0dce2;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  text-align: left;
+}
+.baroque-slide-info-container .baroque-slide-artist,
+.baroque-slide-info-container .baroque-slide-medium,
+.baroque-slide-info-container .baroque-slide-dimensions,
+.baroque-slide-info-container .baroque-slide-date {
+  color: #f8f0dce2;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+  text-align: left;
+}
+.baroque-slide-img-container {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  max-width: 600px;
+  height: 100%;
+  background: transparent;
+  margin-bottom: 0;
+  overflow: hidden;
+}
 
 @keyframes slideIn {
   from { transform: translateX(100%); }
@@ -190,10 +269,8 @@ html, body {
 }
 
 .baroque-slide-img {
-  max-width: 100%;
-  max-height: 60vh;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center;
   display: block;
@@ -488,20 +565,20 @@ html, body {
 .baroque-name {
   font-size: 1.15rem;
   font-weight: 600;
-  color: #222;
+  color: #2b2b2b;
   margin-bottom: 4px;
   text-align: center;
 }
 
 .baroque-artist {
   font-size: 1rem;
-  color: #666;
+  color: #2b2b2b;
   text-align: center;
 }
 
 .baroque-medium {
   font-size: 0.9rem;
-  color: #888;
+  color: #2b2b2b;
   text-align: center;
   font-style: italic;
   margin-top: 2px;
@@ -538,6 +615,41 @@ html, body {
   padding: 0 16px;
 }
 
+.baroque-pagination-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.baroque-pagination-arrow {
+  background: #fbefc7;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 14px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+.baroque-pagination-arrow:hover:not(:disabled) {
+  background: #3d3d3d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.baroque-pagination-arrow:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .baroque-pagination-btn {
   background: #4a3728;
   color: white;
@@ -564,7 +676,7 @@ html, body {
 
 .baroque-pagination-info {
   font-size: 1.2rem;
-  color: #4a3728;
+  color: #838383;
   font-weight: 500;
   font-family: 'Aptos', sans-serif;
 }
@@ -644,6 +756,12 @@ html, body {
   
   .baroque-filter-reset {
     width: 100%;
+    margin-left: 0;
+  }
+  
+  .baroque-pagination-top {
+    width: 100%;
+    justify-content: center;
     margin-left: 0;
   }
 }
@@ -756,58 +874,37 @@ html, body {
 }
 
 @media (max-width: 600px) {
-  .baroque-slide-panel {
-    padding: 60px 16px 32px 16px;
-    min-width: 0;
+  .baroque-slide-panel-wide {
     width: 100vw;
-    left: 0;
-    right: 0;
     max-width: 100vw;
+    padding: 60px 8px 32px 8px;
+  }
+  .baroque-slide-content-row {
+    flex-direction: column;
+    gap: 16px;
     align-items: center;
     justify-content: flex-start;
-    height: 100dvh;
+  }
+  .baroque-slide-info-container {
+    min-width: 0;
+    max-width: 100vw;
+    padding: 18px 8px;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 12px;
   }
   .baroque-slide-img-container {
-    width: 100%;
-    max-width: calc(100vw - 64px);
-    margin-bottom: 24px;
+    min-width: 0;
+    max-width: 100vw;
+    margin-bottom: 0;
+    height: auto;
   }
   .baroque-slide-img {
     max-width: 100%;
     max-height: 55vh;
     width: auto;
     height: auto;
-  }
-  .baroque-slide-title {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    width: 90vw;
-    text-align: center;
-  }
-  .baroque-slide-artist {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    width: 90vw;
-    text-align: center;
-  }
-  .baroque-slide-medium {
-    font-size: 1rem;
-    margin-bottom: 6px;
-    width: 90vw;
-    text-align: center;
-  }
-  .baroque-slide-dimensions {
-    font-size: 1rem;
-    margin-bottom: 12px;
-    width: 90vw;
-    text-align: center;
-  }
-  .baroque-slide-desc {
-    font-size: 1.1rem;
-    margin-bottom: 16px;
-    max-width: 90vw;
-    width: 90vw;
-    text-align: center;
   }
 }
 
@@ -983,24 +1080,34 @@ html, body {
 
 /* About Page Styles */
 .baroque-page-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Stack each about section vertically; each section will handle its own horizontal layout */
+  display: flex;
+  flex-direction: column;
   gap: 40px;
   margin-bottom: 50px;
 }
 
 .baroque-about-section {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.9);
   padding: 30px;
-  /* border-radius: 15px; */
+  /* Make section content horizontal: icon left, text right */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  text-align: left;
 }
 
 .baroque-about-icon {
   font-size: 3rem;
   color: #4a3728;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  /* keep icon area a consistent width so text aligns nicely */
+  min-width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .baroque-about-section h2 {
@@ -1262,6 +1369,10 @@ html, body {
   .baroque-contact-form-container,
   .baroque-legal-section {
     padding: 25px;
+    /* On small screens, stack icon above text and center content */
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
   }
   
   .baroque-submit-btn {
