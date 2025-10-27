@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faEnvelope, faPhone, faMapMarkerAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faMapMarkerAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import './App.css';
+import LogoAndTextsvg from './svg_icons/LogoAndTextsvg.svg';
 
-function Contact({ onBack }) {
+function Contact({ onBack, handleViewChange }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -28,23 +29,21 @@ function Contact({ onBack }) {
 
 	return (
 		<div className="baroque-bg">
-			<nav className="baroque-nav">
-				<div className="baroque-nav-brand">
-					<div className="baroque-nav-title">Art Laundromat</div>
-				</div>
-				<div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center', marginRight: '32px' }}>
-					<button
-						className="baroque-menu-btn"
-						title="Back to Gallery"
-						style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-						onClick={onBack}
-					>
-						<FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-					</button>
-				</div>
-			</nav>
-
-			<div className="baroque-page-content">
+		<nav className="baroque-nav">
+			<div className="baroque-nav-brand" onClick={() => handleViewChange('gallery')} style={{ cursor: 'pointer' }}>
+				<img src={LogoAndTextsvg} alt="Art Laundromat Logo" style={{ height: '52px', marginBottom: '4px' }} />
+			</div>
+			<div className="baroque-nav-links">
+				<button className="baroque-nav-btn" onClick={() => handleViewChange('gallery')}>Home</button>
+				<button className="baroque-nav-btn" onClick={() => handleViewChange('about')}>About</button>
+				<button className="baroque-nav-btn">Contact</button>
+				<button className="baroque-nav-btn" onClick={() => handleViewChange('legal')}>Legal</button>
+			</div>
+			<div className="baroque-nav-actions">
+				<button className="baroque-auth-btn">Sign Up (Coming Soon)</button>
+				<button className="baroque-auth-btn">Log In (Coming Soon)</button>
+			</div>
+		</nav>			<div className="baroque-page-content">
 				<div className="baroque-page-header">
 					<h1 className="baroque-page-title">Contact Us</h1>
 					<div className="baroque-page-subtitle">Get in Touch</div>
@@ -63,7 +62,7 @@ function Contact({ onBack }) {
 								<FontAwesomeIcon icon={faEnvelope} className="baroque-contact-icon" />
 								<div>
 									<h3>Email</h3>
-									<p>dragos@artlaundromat.com</p>
+									<p>admin@artlaundromat.com</p>
 								</div>
 							</div>
 
@@ -71,7 +70,7 @@ function Contact({ onBack }) {
 								<FontAwesomeIcon icon={faPhone} className="baroque-contact-icon" />
 								<div>
 									<h3>Phone</h3>
-									<p>+1 (555) 123-4567</p>
+									<p>Coming Soon</p>
 								</div>
 							</div>
 

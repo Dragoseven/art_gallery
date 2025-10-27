@@ -1,29 +1,28 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faPalette, faUsers, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faPalette, faUsers, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import './App.css';
+import LogoAndTextsvg from './svg_icons/LogoAndTextsvg.svg';
 
-function About({ onBack }) {
+function About({ onBack, handleViewChange }) {
 	return (
 		<div className="baroque-bg">
-			<nav className="baroque-nav">
-				<div className="baroque-nav-brand">
-					<div className="baroque-nav-title">Art Laundromat</div>
-				</div>
-				<div style={{ display: 'flex', flexDirection: 'row', gap: '20px', alignItems: 'center', marginRight: '32px' }}>
-					<button
-						className="baroque-menu-btn"
-						title="Back to Gallery"
-						style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-						onClick={onBack}
-					>
-						<FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-					</button>
-				</div>
-			</nav>
-
-			<div className="baroque-page-content">
+		<nav className="baroque-nav">
+			<div className="baroque-nav-brand" onClick={() => handleViewChange('gallery')} style={{ cursor: 'pointer' }}>
+				<img src={LogoAndTextsvg} alt="Art Laundromat Logo" style={{ height: '52px', marginBottom: '4px' }} />
+			</div>
+			<div className="baroque-nav-links">
+				<button className="baroque-nav-btn" onClick={() => handleViewChange('gallery')}>Home</button>
+				<button className="baroque-nav-btn">About</button>
+				<button className="baroque-nav-btn" onClick={() => handleViewChange('contact')}>Contact</button>
+				<button className="baroque-nav-btn" onClick={() => handleViewChange('legal')}>Legal</button>
+			</div>
+			<div className="baroque-nav-actions">
+				<button className="baroque-auth-btn">Sign Up (Coming Soon)</button>
+				<button className="baroque-auth-btn">Log In (Coming Soon)</button>
+			</div>
+		</nav>			<div className="baroque-page-content">
 				<div className="baroque-page-header">
 					<h1 className="baroque-page-title">About Art Laundromat</h1>
 					<div className="baroque-page-subtitle">Where Art Meets Passion</div>
@@ -46,11 +45,12 @@ function About({ onBack }) {
 						<div className="baroque-about-icon">
 							<FontAwesomeIcon icon={faUsers} />
 						</div>
-						<h2>Our Artists</h2>
+						<h2>Our Roots</h2>
 						<p>
-							We proudly feature works from exceptional artists including Adriana Codescu, Alex Petrescu, 
-							and Maksim Sarkysian. Each artist brings their unique perspective and mastery of various 
-							mediums including oil on canvas, watercolor, graphite, and mixed media compositions.
+							Art Laundromat was founded in 2025 by GhostShell Systems LLC™, a small team of passionate artists and technologists 
+							who believe that art should be accessible to everyone. We are based in the United States and our mission is to 
+							bring exceptional art to digital spaces. We are have Veteran roots and we are proud to support the veteran community.
+							We are also proud to support the artist community and we are always looking for new and exciting artists to feature on our platform.
 						</p>
 					</div>
 
