@@ -1,17 +1,17 @@
 # Simple Art Showcase
 
-A beautiful, responsive art gallery showcasing baroque and classical artworks. Built with React and Vite.
+A beautiful, minimalist art exchange platform for traditional art. Built with React and Vite.
 
 ## Features
 
-- **Responsive Grid Layout**: Adapts to different screen sizes (3 columns on desktop, 2 on tablet, 1 on mobile)
+- **Responsive Grid Layout**: Adapts to different screen sizes (4 columns on desktop, 2 on tablet, 1 on mobile)
 - **Interactive Gallery**: Click on any artwork to view it in a detailed sliding panel
 - **Smooth Navigation**: Includes a smooth scroll-to-top button
 - **Clean Design**: Elegant typography and cohesive color scheme
 
-## Live Demo
+## Live Website
 
-Visit the live gallery at: [https://dragoseven.github.io/art_gallery/](https://dragoseven.github.io/art_gallery/)
+https://artlaundromat.com
 
 ## Local Development
 
