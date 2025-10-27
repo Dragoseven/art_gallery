@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faCartShopping, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import About from './About';
 import Contact from './Contact';
@@ -49,7 +49,6 @@ const artPieces = [
 
 
 function App() {
-	const [menuOpen, setMenuOpen] = useState(false);
 	const [selected, setSelected] = useState(null);
 	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 	const [currentPage, setCurrentPage] = useState('gallery'); // 'gallery', 'about', 'contact', 'legal'
@@ -61,6 +60,11 @@ function App() {
 	const ITEMS_PER_PAGE = 12;
 	const [currentGalleryPage, setCurrentGalleryPage] = useState(1);
 	const totalPages = Math.ceil(artPieces.length / ITEMS_PER_PAGE);
+	
+	// Filter and Sort states
+	const [filterMedium, setFilterMedium] = useState('all');
+	const [filterArtist, setFilterArtist] = useState('all');
+	const [sortBy, setSortBy] = useState('default');
 
 // Responsive columns: 4 desktop, 2 medium, 1 mobile
 	let columns = 4;
@@ -69,7 +73,6 @@ function App() {
 
 	const handleViewChange = (page) => {
 		setCurrentPage(page);
-		setMenuOpen(false);
 	};
 
 	const handleBackToGallery = () => {
@@ -115,9 +118,27 @@ function App() {
 
 	// Get current page items
 	const getCurrentPageItems = () => {
+		// Apply filters
+		let filteredPieces = artPieces.filter(piece => {
+			const mediumMatch = filterMedium === 'all' || piece.medium === filterMedium;
+			const artistMatch = filterArtist === 'all' || piece.artist === filterArtist;
+			return mediumMatch && artistMatch;
+		});
+		
+		// Apply sorting
+		if (sortBy === 'name-asc') {
+			filteredPieces.sort((a, b) => a.name.localeCompare(b.name));
+		} else if (sortBy === 'name-desc') {
+			filteredPieces.sort((a, b) => b.name.localeCompare(a.name));
+		} else if (sortBy === 'artist-asc') {
+			filteredPieces.sort((a, b) => a.artist.localeCompare(b.artist));
+		} else if (sortBy === 'artist-desc') {
+			filteredPieces.sort((a, b) => b.artist.localeCompare(a.artist));
+		}
+		
 		const startIndex = (currentGalleryPage - 1) * ITEMS_PER_PAGE;
 		const endIndex = startIndex + ITEMS_PER_PAGE;
-		return artPieces.slice(startIndex, endIndex);
+		return filteredPieces.slice(startIndex, endIndex);
 	};
 
 	// Check if painting is landscape (wider than tall)
@@ -140,56 +161,98 @@ function App() {
 
 	// Page routing logic
 	if (currentPage === 'about') {
-		return <About onBack={handleBackToGallery} />;
+		return <About onBack={handleBackToGallery} handleViewChange={handleViewChange} />;
 	}
 	if (currentPage === 'contact') {
-		return <Contact onBack={handleBackToGallery} />;
+		return <Contact onBack={handleBackToGallery} handleViewChange={handleViewChange} />;
 	}
 	if (currentPage === 'legal') {
-		return <Legal onBack={handleBackToGallery} />;
+		return <Legal onBack={handleBackToGallery} handleViewChange={handleViewChange} />;
 	}
 
 return (
 <React.Fragment>
 <div className="baroque-bg">
 <nav className="baroque-nav">
-<div className="baroque-nav-brand">
+<div className="baroque-nav-brand" onClick={() => handleViewChange('gallery')} style={{ cursor: 'pointer' }}>
 	<img src={LogoAndTextsvg} alt="Art Laundromat Logo" style={{ height: '52px', marginBottom: '4px' }} />
 </div>
 		<div className="baroque-nav-links">
-			<span className="baroque-nav-link-item" onClick={() => handleViewChange('gallery')}>Home</span>
-			<span className="baroque-nav-link-item" onClick={() => handleViewChange('about')}>About</span>
-			<span className="baroque-nav-link-item" onClick={() => handleViewChange('contact')}>Contact</span>
-			<span className="baroque-nav-link-item" onClick={() => handleViewChange('legal')}>Legal</span>
+			<button className="baroque-nav-btn" onClick={() => handleViewChange('gallery')}>Home</button>
+			<button className="baroque-nav-btn" onClick={() => handleViewChange('about')}>About</button>
+			<button className="baroque-nav-btn" onClick={() => handleViewChange('contact')}>Contact</button>
+			<button className="baroque-nav-btn" onClick={() => handleViewChange('legal')}>Legal</button>
 		</div>
-		<div className="baroque-nav-icons">
-			<button
-				className="baroque-menu-btn"
-				title="Menu"
-				style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-				// onClick={() => setMenuOpen((open) => !open)}
-			>
-				<FontAwesomeIcon icon={faBook} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-			</button>
-			<button
-				className="baroque-menu-btn"
-				title="Cart"
-				style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-			>
-				<FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2.2rem', color: '#fffbe9', filter: 'drop-shadow(0 0 3px #7c6a4a)' }} />
-			</button>
+		<div className="baroque-nav-actions">
+			<button className="baroque-auth-btn">Sign Up (Coming Soon)</button>
+			<button className="baroque-auth-btn">Log In (Coming Soon)</button>
 		</div>
-{/*
-{menuOpen && (
-<div className="baroque-menu-dropdown">
-<button className="baroque-menu-item" onClick={() => handlePageChange('gallery')}>Home</button>
-<button className="baroque-menu-item" onClick={() => handlePageChange('about')}>About</button>
-<button className="baroque-menu-item" onClick={() => handlePageChange('contact')}>Contact</button>
-<button className="baroque-menu-item" onClick={() => handlePageChange('legal')}>Legal</button>
-</div>
-)}
-*/}
-</nav>
+	</nav>
+	
+	{/* Filter and Sort Bar */}
+	<div className="baroque-filter-bar">
+		<div className="baroque-filter-section">
+			<label htmlFor="medium-filter" className="baroque-filter-label">Medium:</label>
+			<select 
+				id="medium-filter"
+				className="baroque-filter-select"
+				value={filterMedium}
+				onChange={(e) => setFilterMedium(e.target.value)}
+			>
+				<option value="all">All Media</option>
+				<option value="Acrylic on Canvas">Acrylic on Canvas</option>
+				<option value="Graphite on Paper">Graphite on Paper</option>
+				<option value="Oil on Canvas">Oil on Canvas</option>
+				<option value="Oil on Wood Board">Oil on Wood Board</option>
+				<option value="Oil on Wood Board, Varnish">Oil on Wood Board, Varnish</option>
+				<option value="Watercolor on Dollar Bill">Watercolor on Dollar Bill</option>
+				<option value="Watercolor on Textured Paper">Watercolor on Textured Paper</option>
+			</select>
+		</div>
+		
+		<div className="baroque-filter-section">
+			<label htmlFor="artist-filter" className="baroque-filter-label">Artist:</label>
+			<select 
+				id="artist-filter"
+				className="baroque-filter-select"
+				value={filterArtist}
+				onChange={(e) => setFilterArtist(e.target.value)}
+			>
+				<option value="all">All Artists</option>
+				<option value="Alex Petrescu">Alex Petrescu</option>
+				<option value="Adriana Codescu">Adriana Codescu</option>
+				<option value="Maksim Sarkysian">Maksim Sarkysian</option>
+			</select>
+		</div>
+		
+		<div className="baroque-filter-section">
+			<label htmlFor="sort-select" className="baroque-filter-label">Sort By:</label>
+			<select 
+				id="sort-select"
+				className="baroque-filter-select"
+				value={sortBy}
+				onChange={(e) => setSortBy(e.target.value)}
+			>
+				<option value="default">Default</option>
+				<option value="name-asc">Name (A-Z)</option>
+				<option value="name-desc">Name (Z-A)</option>
+				<option value="artist-asc">Artist (A-Z)</option>
+				<option value="artist-desc">Artist (Z-A)</option>
+			</select>
+		</div>
+		
+		<button 
+			className="baroque-filter-reset"
+			onClick={() => {
+				setFilterMedium('all');
+				setFilterArtist('all');
+				setSortBy('default');
+			}}
+		>
+			Reset Filters
+		</button>
+	</div>
+	
 <section
 	className="baroque-gallery"
 	style={{
@@ -315,10 +378,10 @@ name="Art Laundromat"
 className="baroque-footer-brand"
 />
 <FooterLinkGroup className="baroque-footer-links">
-<FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="baroque-footer-link">About</FooterLink>
-<FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('legal'); }} className="baroque-footer-link">Privacy Policy</FooterLink>
-<FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('legal'); }} className="baroque-footer-link">Licensing</FooterLink>
-<FooterLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange('contact'); }} className="baroque-footer-link">Contact</FooterLink>
+<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('about'); }} className="baroque-footer-link">About</FooterLink>
+<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('legal'); }} className="baroque-footer-link">Privacy Policy</FooterLink>
+<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('legal'); }} className="baroque-footer-link">Licensing</FooterLink>
+<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('contact'); }} className="baroque-footer-link">Contact</FooterLink>
 
 
 </FooterLinkGroup>

@@ -290,21 +290,128 @@ html, body {
   margin-right: 32px;
 }
 
-.baroque-nav-link-item {
+.baroque-nav-btn {
+  background: transparent;
   color: #fffbe9;
+  border: 2px solid rgba(255, 251, 233, 0.4);
+  border-radius: 6px;
+  padding: 10px 20px;
   font-size: 1.1rem;
+  font-family: 'Aptos', sans-serif;
+  font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.baroque-nav-link-item:hover {
-  opacity: 0.8;
+.baroque-nav-btn:hover {
+  background: rgba(255, 251, 233, 0.15);
+  border-color: #fffbe9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.baroque-nav-icons {
+.baroque-nav-actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
+}
+
+/* Filter Bar Styles */
+.baroque-filter-bar {
+  background: rgba(38, 38, 36, 0.876);
+  backdrop-filter: blur(10px);
+  padding: 20px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 251, 233, 0.2);
+}
+
+.baroque-filter-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.baroque-filter-label {
+  color: #fffbe9;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Aptos', sans-serif;
+}
+
+.baroque-filter-select {
+  background: rgba(255, 251, 233, 0.1);
+  color: #fffbe9;
+  border: 2px solid rgba(255, 251, 233, 0.3);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-family: 'Aptos', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.baroque-filter-select:hover {
+  background: rgba(255, 251, 233, 0.15);
+  border-color: rgba(255, 251, 233, 0.5);
+}
+
+.baroque-filter-select:focus {
+  outline: none;
+  border-color: #fffbe9;
+  background: rgba(255, 251, 233, 0.2);
+}
+
+.baroque-filter-select option {
+  background: #2a2a2a;
+  color: #fffbe9;
+}
+
+.baroque-filter-reset {
+  background: transparent;
+  color: #fffbe9;
+  border: 2px solid rgba(255, 251, 233, 0.4);
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-family: 'Aptos', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.baroque-filter-reset:hover {
+  background: rgba(255, 251, 233, 0.15);
+  border-color: #fffbe9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.baroque-auth-btn {
+  background: transparent;
+  color: #fffbe9;
+  border: 2px solid rgba(255, 251, 233, 0.4);
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-family: 'Aptos', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.baroque-auth-btn:hover {
+  background: rgba(255, 251, 233, 0.15);
+  border-color: #fffbe9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .baroque-header {
@@ -498,20 +605,46 @@ html, body {
   }
   
   .baroque-nav-links {
-    gap: 16px;
-    margin-right: 16px;
+    gap: 12px;
+    margin-right: 12px;
   }
   
-  .baroque-nav-link-item {
+  .baroque-nav-btn {
+    padding: 8px 14px;
     font-size: 0.9rem;
   }
   
-  .baroque-nav-icons {
+  .baroque-nav-actions {
     gap: 8px;
   }
   
-  .baroque-menu-btn svg {
-    font-size: 1.8rem !important;
+  .baroque-auth-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive Filter Bar */
+  .baroque-filter-bar {
+    padding: 16px;
+    gap: 12px;
+    flex-direction: column;
+  }
+  
+  .baroque-filter-section {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .baroque-filter-select {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .baroque-filter-reset {
+    width: 100%;
+    margin-left: 0;
   }
 }
 
