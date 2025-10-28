@@ -178,17 +178,17 @@ function Legal() {
 			<Footer container className="baroque-footer-custom">
 				<div className="w-full">
 					<div className="w-full baroque-footer-top">
-						<FooterBrand
-							href="#"
-							name="Art Laundromat"
-							className="baroque-footer-brand"
-						/>
-						<FooterLinkGroup className="baroque-footer-links">
-							<FooterLink href="#" onClick={(e) => { e.preventDefault(); onBack(); }} className="baroque-footer-link">Gallery</FooterLink>
-							<FooterLink href="#" className="baroque-footer-link">About</FooterLink>
-							<FooterLink href="#" className="baroque-footer-link">Contact</FooterLink>
-							<FooterLink href="#" className="baroque-footer-link">Legal</FooterLink>
-						</FooterLinkGroup>
+					<FooterBrand
+						href="/"
+						name="Art Laundromat"
+						className="baroque-footer-brand"
+						onClick={(e) => { e.preventDefault(); handleViewChange('gallery'); }}
+					/>
+					<FooterLinkGroup className="baroque-footer-links">
+						<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('about'); }} className="baroque-footer-link">About</FooterLink>
+						<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('contact'); }} className="baroque-footer-link">Contact</FooterLink>
+						<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('legal'); }} className="baroque-footer-link">Legal</FooterLink>
+					</FooterLinkGroup>
 					</div>
 					<FooterDivider className="baroque-footer-divider" />
 					<div className="baroque-footer-bottom">

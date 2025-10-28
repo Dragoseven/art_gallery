@@ -469,11 +469,8 @@ className="baroque-footer-brand"
 />
 <FooterLinkGroup className="baroque-footer-links">
 <FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('about'); }} className="baroque-footer-link">About</FooterLink>
-<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('legal'); }} className="baroque-footer-link">Privacy Policy</FooterLink>
-<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('legal'); }} className="baroque-footer-link">Licensing</FooterLink>
 <FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('contact'); }} className="baroque-footer-link">Contact</FooterLink>
-
-
+<FooterLink href="#" onClick={(e) => { e.preventDefault(); handleViewChange('legal'); }} className="baroque-footer-link">Legal</FooterLink>
 </FooterLinkGroup>
 </div>
 
