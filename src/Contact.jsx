@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import './App.css';
 import LogoAndTextsvg from './svg_icons/LogoAndTextsvg.svg';
 
-function Contact({ onBack, handleViewChange }) {
+function Contact() {
+	const navigate = useNavigate();
+	const handleViewChange = (page) => {
+		const pathMap = {
+			gallery: '/',
+			about: '/about',
+			contact: '/contact',
+			legal: '/legal',
+			signup: '/signup',
+			login: '/login'
+		};
+		navigate(pathMap[page] || '/');
+	};
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -40,8 +53,8 @@ function Contact({ onBack, handleViewChange }) {
 				<button className="baroque-nav-btn" onClick={() => handleViewChange('legal')}>Legal</button>
 			</div>
 			<div className="baroque-nav-actions">
-				<button className="baroque-auth-btn">Sign Up (Coming Soon)</button>
-				<button className="baroque-auth-btn">Log In (Coming Soon)</button>
+				<button className="baroque-auth-btn" onClick={() => handleViewChange('signup')}>Sign Up</button>
+				<button className="baroque-auth-btn" onClick={() => handleViewChange('login')}>Log In</button>
 			</div>
 		</nav>			<div className="baroque-page-content">
 				<div className="baroque-page-header">

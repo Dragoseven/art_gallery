@@ -11,7 +11,7 @@
 }
 
 .baroque-bg {
-  background: #817f7a;
+  background: #9a978bbe;
   min-height: 100vh;
   width: 100%;
   font-family: "'Aptos', sans-serif";
@@ -79,12 +79,37 @@
 .baroque-footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Aptos', sans-serif;
-}
+  }
 
+  .baroque-signup-row {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .baroque-signup-row label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .baroque-signup-row input {
+    margin-top: 0.4rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #bdbdbd;
+    font-size: 1rem;
+    background: #f7f7f7;
+  }
+
+  .baroque-signup-row label:not(:last-child) {
+    margin-right: 1.2rem;
+  }
+  
 
 
 .baroque-footer-copyright {
@@ -138,13 +163,6 @@ html, body {
   height: 48px;
 }
 
-.baroque-bg {
-  background: #c0c0c09f;
-  min-height: 100vh;
-  width: 100%;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  box-sizing: border-box;
-}
 
 .baroque-overlay {
   position: fixed;
@@ -549,13 +567,14 @@ html, body {
   margin-bottom: 0;
   background: transparent;
   border-radius: 0;
-  box-shadow: 2px 8px 25px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.246);
+  transition: box-shadow 0.3s ease;
 }
 
 .baroque-img:hover {
-  box-shadow: 6px 14px 30px rgba(0, 0, 0, 0.4);
-  transform: scale(1.05);
+  box-shadow: 0 0 10px 10px rgba(163, 126, 61, 0.256), 0 8px 32px rgba(0,0,0,0.5);
+  outline: 2px solid rgba(30,30,30,0.25);
+  /* Removed scaling pop-out effect */
 }
 
 .baroque-info {
@@ -623,7 +642,7 @@ html, body {
 }
 
 .baroque-pagination-arrow {
-  background: #fbefc7;
+  background: #ffffffe4;
   color: rgb(0, 0, 0);
   border: none;
   padding: 10px 14px;
@@ -639,20 +658,20 @@ html, body {
 }
 
 .baroque-pagination-arrow:hover:not(:disabled) {
-  background: #3d3d3d;
+  background: #ffe483;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .baroque-pagination-arrow:disabled {
-  background: #ccc;
+  background: #4b4b4b;
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 .baroque-pagination-btn {
-  background: #4a3728;
-  color: white;
+  background: #ffffff;
+  color: rgb(255, 255, 255);
   border: none;
   padding: 12px 24px;
   font-size: 1.1rem;
@@ -660,12 +679,6 @@ html, body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Aptos', sans-serif;
-}
-
-.baroque-pagination-btn:hover:not(:disabled) {
-  background: #3a2a1f;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .baroque-pagination-btn:disabled {
@@ -676,7 +689,7 @@ html, body {
 
 .baroque-pagination-info {
   font-size: 1.2rem;
-  color: #838383;
+  color: #ffffff;
   font-weight: 500;
   font-family: 'Aptos', sans-serif;
 }
@@ -1378,4 +1391,140 @@ html, body {
   .baroque-submit-btn {
     align-self: stretch;
   }
+}
+
+/* Modern styles for SignUp and Login pages */
+.baroque-signup-page, .baroque-login-page {
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.baroque-signup-title, .baroque-login-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f8f0dce2;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.baroque-signup-form, .baroque-login-form {
+  width: 80%;
+  min-width: 320px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.baroque-signup-form label, .baroque-login-form label {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.baroque-signup-form input, .baroque-login-form input {
+  width: 100%;
+  min-width: 220px;
+  max-width: 540px;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.baroque-signup-submit, .baroque-login-submit,
+.baroque-signup-back, .baroque-login-back {
+  width: 80%;
+  min-width: 220px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+.baroque-signup-form label, .baroque-login-form label {
+  color: #fffbe9;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.baroque-signup-form input, .baroque-login-form input {
+  background: rgba(67, 67, 67, 0.437);
+  border: 2px solid #f8f0dce2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #fffbe9;
+  font-size: 1rem;
+  margin-top: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.baroque-signup-form input:focus, .baroque-login-form input:focus {
+  border-color: #7c6a4a;
+}
+.baroque-signup-submit, .baroque-login-submit {
+  background: #7c6a4a;
+  color: #fffbe9;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.baroque-signup-submit:hover, .baroque-login-submit:hover {
+  background: #4a3728;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+}
+.baroque-signup-back, .baroque-login-back {
+  background: none;
+  color: #fffbe9;
+  border: 2px solid #7c6a4a;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 100%;
+  transition: background 0.2s, color 0.2s;
+}
+.baroque-signup-back:hover, .baroque-login-back:hover {
+  background: #7c6a4a;
+  color: #fffbe9;
+}
+
+.baroque-signup-bg, .baroque-login-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #1d1d1d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baroque-forgot-password {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.baroque-forgot-password a {
+  color: #ffe483;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.baroque-forgot-password a:hover {
+  color: #fffbe9;
 }

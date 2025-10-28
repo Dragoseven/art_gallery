@@ -1,10 +1,13 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import About from './About';
 import Contact from './Contact';
 import Legal from './Legal';
+import SignUp from './SignUp';
+import Login from './Login';
 import './App.css';
 import LogoAndTextsvg from './svg_icons/LogoAndTextsvg.svg';
 
@@ -56,34 +59,102 @@ const artPieces = [
 
 
 function App() {
+	const navigate = useNavigate();
+	const location = useLocation();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [selected, setSelected] = useState(null);
 	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-	const [currentPage, setCurrentPage] = useState('gallery'); // 'gallery', 'about', 'contact', 'legal'
 	// Track current image index for each card
 	const [cardImageIndexes, setCardImageIndexes] = useState(
 		artPieces.map(() => 0)
 	);
 	// Pagination
 	const ITEMS_PER_PAGE = 12;
-	const [currentGalleryPage, setCurrentGalleryPage] = useState(1);
-	const totalPages = Math.ceil(artPieces.length / ITEMS_PER_PAGE);
+	const [currentGalleryPage, setCurrentGalleryPage] = useState(() => {
+		const raw = parseInt(searchParams.get('page') || '1', 10);
+		if (Number.isNaN(raw) || raw < 1) return 1;
+		return raw;
+	});
 	
 	// Filter and Sort states
 	const [filterMedium, setFilterMedium] = useState('all');
 	const [filterArtist, setFilterArtist] = useState('all');
 	const [sortBy, setSortBy] = useState('default');
 
+	useEffect(() => {
+		const raw = parseInt(searchParams.get('page') || '1', 10);
+		const normalized = Number.isNaN(raw) || raw < 1 ? 1 : raw;
+		if (normalized !== currentGalleryPage) {
+			setCurrentGalleryPage(normalized);
+		}
+	}, [searchParams, currentGalleryPage]);
+
+	const filteredPieces = useMemo(() => {
+		let filtered = artPieces.filter(piece => {
+			const mediumMatch = filterMedium === 'all' || piece.medium === filterMedium;
+			const artistMatch = filterArtist === 'all' || piece.artist === filterArtist;
+			return mediumMatch && artistMatch;
+		});
+
+		if (sortBy === 'name-asc') {
+			filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+		} else if (sortBy === 'name-desc') {
+			filtered = [...filtered].sort((a, b) => b.name.localeCompare(a.name));
+		} else if (sortBy === 'artist-asc') {
+			filtered = [...filtered].sort((a, b) => a.artist.localeCompare(b.artist));
+		} else if (sortBy === 'artist-desc') {
+			filtered = [...filtered].sort((a, b) => b.artist.localeCompare(a.artist));
+		}
+
+		return filtered;
+	}, [filterMedium, filterArtist, sortBy]);
+
+	const totalPages = Math.max(1, Math.ceil(filteredPieces.length / ITEMS_PER_PAGE));
+	const safePage = Math.min(Math.max(1, currentGalleryPage), totalPages);
+	const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
+	const currentGalleryItems = filteredPieces.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+	useEffect(() => {
+		if (safePage !== currentGalleryPage) {
+			setCurrentGalleryPage(safePage);
+			const params = new URLSearchParams(searchParams);
+			params.set('page', safePage.toString());
+			setSearchParams(params, { replace: true });
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [safePage]);
+
+
 // Responsive columns: 4 desktop, 2 medium, 1 mobile
 	let columns = 4;
 	if (window.innerWidth <= 1200) columns = 2;
 	if (window.innerWidth <= 600) columns = 1;
 
+	const pageMap = {
+		gallery: '/',
+		about: '/about',
+		contact: '/contact',
+		legal: '/legal',
+		signup: '/signup',
+		login: '/login'
+	};
+
+	const pathToPage = {
+		'/about': 'about',
+		'/contact': 'contact',
+		'/legal': 'legal',
+		'/signup': 'signup',
+		'/login': 'login'
+	};
+
+	const currentPage = pathToPage[location.pathname] || 'gallery';
+
 	const handleViewChange = (page) => {
-		setCurrentPage(page);
+		navigate(pageMap[page] || '/');
 	};
 
 	const handleBackToGallery = () => {
-		setCurrentPage('gallery');
+		navigate('/');
 	};
 
 	const handleCardImageChange = (cardIndex, direction) => {
@@ -119,33 +190,12 @@ function App() {
 
 	// Pagination handlers
 	const handlePageChange = (page) => {
+		if (page < 1 || page > totalPages) return;
 		setCurrentGalleryPage(page);
+		const params = new URLSearchParams(searchParams);
+		params.set('page', page.toString());
+		setSearchParams(params, { replace: true });
 		window.scrollTo({ top: 0, behavior: 'smooth' });
-	};
-
-	// Get current page items
-	const getCurrentPageItems = () => {
-		// Apply filters
-		let filteredPieces = artPieces.filter(piece => {
-			const mediumMatch = filterMedium === 'all' || piece.medium === filterMedium;
-			const artistMatch = filterArtist === 'all' || piece.artist === filterArtist;
-			return mediumMatch && artistMatch;
-		});
-		
-		// Apply sorting
-		if (sortBy === 'name-asc') {
-			filteredPieces.sort((a, b) => a.name.localeCompare(b.name));
-		} else if (sortBy === 'name-desc') {
-			filteredPieces.sort((a, b) => b.name.localeCompare(a.name));
-		} else if (sortBy === 'artist-asc') {
-			filteredPieces.sort((a, b) => a.artist.localeCompare(b.artist));
-		} else if (sortBy === 'artist-desc') {
-			filteredPieces.sort((a, b) => b.artist.localeCompare(a.artist));
-		}
-		
-		const startIndex = (currentGalleryPage - 1) * ITEMS_PER_PAGE;
-		const endIndex = startIndex + ITEMS_PER_PAGE;
-		return filteredPieces.slice(startIndex, endIndex);
 	};
 
 	// Check if painting is landscape (wider than tall)
@@ -168,13 +218,19 @@ function App() {
 
 	// Page routing logic
 	if (currentPage === 'about') {
-		return <About onBack={handleBackToGallery} handleViewChange={handleViewChange} />;
+		return <About />;
 	}
 	if (currentPage === 'contact') {
-		return <Contact onBack={handleBackToGallery} handleViewChange={handleViewChange} />;
+		return <Contact />;
 	}
 	if (currentPage === 'legal') {
-		return <Legal onBack={handleBackToGallery} handleViewChange={handleViewChange} />;
+		return <Legal />;
+	}
+	if (currentPage === 'signup') {
+		return <SignUp />;
+	}
+	if (currentPage === 'login') {
+		return <Login />;
 	}
 
 return (
@@ -191,8 +247,8 @@ return (
 			<button className="baroque-nav-btn" onClick={() => handleViewChange('legal')}>Legal</button>
 		</div>
 		<div className="baroque-nav-actions">
-			<button className="baroque-auth-btn">Sign Up (Coming Soon)</button>
-			<button className="baroque-auth-btn">Log In (Coming Soon)</button>
+			<button className="baroque-auth-btn" onClick={() => handleViewChange('signup')}>Sign Up</button>
+			<button className="baroque-auth-btn" onClick={() => handleViewChange('login')}>Log In</button>
 		</div>
 	</nav>
 	
@@ -264,19 +320,19 @@ return (
 			<div className="baroque-pagination-top">
 				<button 
 					className="baroque-pagination-arrow"
-					onClick={() => handlePageChange(currentGalleryPage - 1)}
-					disabled={currentGalleryPage === 1}
+					onClick={() => handlePageChange(safePage - 1)}
+					disabled={safePage === 1}
 					title="Previous page"
 				>
 					<FontAwesomeIcon icon={faChevronLeft} />
 				</button>
 				<span className="baroque-pagination-info">
-					{currentGalleryPage} / {totalPages}
+					{safePage} / {totalPages}
 				</span>
 				<button 
 					className="baroque-pagination-arrow"
-					onClick={() => handlePageChange(currentGalleryPage + 1)}
-					disabled={currentGalleryPage === totalPages}
+					onClick={() => handlePageChange(safePage + 1)}
+					disabled={safePage === totalPages}
 					title="Next page"
 				>
 					<FontAwesomeIcon icon={faChevronRight} />
@@ -293,8 +349,8 @@ return (
 		gap: '40px 32px',
 	}}
 >
-		{getCurrentPageItems().map((piece, idx) => {
-			const originalIndex = (currentGalleryPage - 1) * ITEMS_PER_PAGE + idx;
+		{currentGalleryItems.map((piece, idx) => {
+			const originalIndex = (safePage - 1) * ITEMS_PER_PAGE + idx;
 			const landscape = isLandscape(piece.dimensions);
 			return (
 			<React.Fragment key={originalIndex}>
@@ -381,19 +437,19 @@ return (
 	<div className="baroque-pagination">
 		<button 
 			className="baroque-pagination-arrow"
-			onClick={() => handlePageChange(currentGalleryPage - 1)}
-			disabled={currentGalleryPage === 1}
+			onClick={() => handlePageChange(safePage - 1)}
+			disabled={safePage === 1}
 			title="Previous page"
 		>
 			<FontAwesomeIcon icon={faChevronLeft} />
 		</button>
 		<span className="baroque-pagination-info">
-			Page {currentGalleryPage} of {totalPages}
+			Page {safePage} of {totalPages}
 		</span>
 		<button 
 			className="baroque-pagination-arrow"
-			onClick={() => handlePageChange(currentGalleryPage + 1)}
-			disabled={currentGalleryPage === totalPages}
+			onClick={() => handlePageChange(safePage + 1)}
+			disabled={safePage === totalPages}
 			title="Next page"
 		>
 			<FontAwesomeIcon icon={faChevronRight} />
